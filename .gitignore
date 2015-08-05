@@ -4,4 +4,6 @@ build/
 packages
 pubspec.lock
 tags
+.tags
+.tags1
 gems.tags

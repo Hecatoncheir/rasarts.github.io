@@ -16,11 +16,13 @@ transformers:
   - flare/metadata_extractor
   - flare/metadata_translator
   - flare/markdown_transformer
+
   - flare/posts_indexer:
       root: web/posts
   - flare/posts_transformer:
       root: web/posts
       layout: web/templates/_posts_layout.tmpl.html
+
   - flare/partials_transformer
   - flare/metadata_aggregator
   - flare/mustache_transformer

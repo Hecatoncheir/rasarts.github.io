@@ -6,7 +6,7 @@ require 'susy'
 # Set this to the root of your project when deployed:
 # http_path = "/"
 css_dir = "build/web/stylesheets"
-sass_dir = "web/sass"
+sass_dir = "web/stylesheets"
 images_dir = "web/images"
 javascripts_dir = "web/scripts"
 

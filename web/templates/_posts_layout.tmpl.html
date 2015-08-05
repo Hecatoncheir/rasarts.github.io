@@ -2,12 +2,14 @@
 
 <html>
   <head>
-  	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="stylesheets/main.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} | {{site.title}}</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+
   </head>
   <body>
+    {{> /templates/partials/_header.html}}
 
     <section>
       <article>
@@ -15,6 +17,8 @@
         {{content}}
       </article>
     </section>
+
+    {{> /templates/partials/_footer.html}}
 
   </body>
 </html>
