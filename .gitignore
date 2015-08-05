@@ -1,0 +1,7 @@
+build/
+.sass-cache/
+.pub/
+packages
+pubspec.lock
+tags
+gems.tags

@@ -1,0 +1,28 @@
+name: w3guru
+version: 0.0.1
+autor: Vostrikov Vitaliy <rasart.pro@gmail.com>
+description: Site for my opinions.
+
+dev_dependencies:
+  flare: any
+  sass: any
+
+transformers:
+  - sass:
+      compass: true
+      style: compact
+      copy-sources: false
+
+  - flare/metadata_extractor
+  - flare/metadata_translator
+  - flare/markdown_transformer
+  - flare/posts_indexer:
+      root: web/posts
+  - flare/posts_transformer:
+      root: web/posts
+      layout: web/templates/_posts_layout.tmpl.html
+  - flare/partials_transformer
+  - flare/metadata_aggregator
+  - flare/mustache_transformer
+  - flare/html_optimizer
+  - flare/cleanup_transformer
