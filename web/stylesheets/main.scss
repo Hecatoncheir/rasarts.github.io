@@ -1,15 +1,103 @@
-@import "compass/reset";
+@import 'compass/reset';
+@import "compass/css3";
+@import "compass/typography/vertical_rhythm";
+@import "compass/css3/user-interface";
 
-body {
-  border: 8px solid rgb(47,68,78);
-  background: rgb(249,241,234);
-  padding: 10px;
+@import "fonts";
+@import "mixins";
+
+@import "components/shake";
+@import "components/breakpoint";
+
+@import "modules/header";
+@import "modules/footer";
+
+$base-font-size: 16px;
+$base-line-height: 24px;
+$rhythm-unit: "em";
+$min-line-padding: 2px;
+
+$color-text: #3b3e45;
+$color-marked: #bad300;
+$column: 3;
+
+
+.column {
+  -moz-column-count: $column;
+  -webkit-column-count: $column;
+  column-count:$column;
+  column-gap: 20px;
+  -webkit-column-break-inside:avoid;
+  -moz-column-break-inside:avoid;
+  -o-column-break-inside:avoid;
+  -ms-column-break-inside:avoid;
+  column-break-inside:avoid;
+  padding: 20px 0;
+  @include breakpoint(max-width 600px) {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
 }
 
+
+body {
+  border: 13px solid rgb(47,68,78);
+  background: rgb(249,241,234);
+  padding: 10px;
+
+  font-family: 'Ubuntu Medium';
+  line-height: 24px;
+}
+
+
+.marker {
+  background: #3b3e45;
+  color: #bad300;
+}
+
+
 .posts {
-  // top: 8px;
-  // right: 8px;
-  // bottom: 8px;
-  // left: 8px;
+  padding: 30px;
   display: block;
+  font-family: 'Ubuntu Medium';
+  @include adjust-font-size-to(19px);
+
+  .post {
+    clear: both;
+  }
+
+  h1 {
+    text-align: center;
+    padding: 10px 0;
+    color: rgb(46,68,78);
+    @include adjust-font-size-to(40px);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Ubuntu Bold';
+    @include breakpoint(max-width 400px){
+      font-size: 18px;
+    }
+  }
+
+  h2 {
+    @include adjust-font-size-to(20px);
+    font-weight: bold;
+    font-family: 'Ubuntu Bold';
+    padding: 20px 0;
+    color: rgb(46,68,78);
+  }
+
+  h3 {
+    @extend h2;
+    @include adjust-font-size-to(17px);
+  }
+
+  hr {
+    width: 20%;
+    color: rgb(221,107,110);
+    background-color: rgb(221,107,110);
+    border: none; /* Убираем границу для браузера Firefox */
+    height: 3px; /* Толщина линии */
+  }
 }

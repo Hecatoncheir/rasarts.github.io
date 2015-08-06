@@ -9,6 +9,7 @@ css_dir = "build/web/stylesheets"
 sass_dir = "web/stylesheets"
 images_dir = "web/images"
 javascripts_dir = "web/scripts"
+fonts_dir = "web/fonts"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed

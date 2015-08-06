@@ -13,8 +13,9 @@
 
     <section class="posts">
     {{#site.posts.all}}
-      <article>
-        {{title}}
+      <h1>{{title}}</h1>
+      <hr>
+      <article class="post">
         <p>{{content}}</p>
       </article>
     {{/site.posts.all}}

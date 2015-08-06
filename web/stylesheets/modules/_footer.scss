@@ -1,0 +1,22 @@
+.main-footer {
+  clear: both;
+  background: #2f444e;
+  position: relative;
+  bottom: -10px;
+  position: relative;
+  width: 100%;
+  border: 10px solid #2f444e;
+  left: -10px;
+  padding-bottom: 20px;
+
+  a {
+    color: #f9f1ea;
+    float: left;
+    margin-right: 10px;
+    font-family: 'Ubuntu Bold';
+    text-decoration: none;
+    &:hover {
+      color: #dd6b6e;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+
+#mainPath {
+  fill: rgb(236,105,111);
+}
+
+#mainPath:hover {
+  fill: rgb(47,68,78);
+}
+
+
+.main-header {
+  display: block;
+  padding-bottom: 30px;
+
+  a {
+    // width: 10%;
+    width: 110px;
+    margin: 0 auto;
+    margin-top: -10px;
+    display: block;
+    height: 120px;
+    // background: rgb(47,68,78);
+    text-align: center;
+    font-family: 'Ubuntu Medium';
+  }
+  #w3logo {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 16%;
+  }
+
+}
+
+.main-menu {
+  position: relative;
+  top: -100px;
+  width: 40%;
+  min-width: 340px;
+  margin: 0 auto;
+
+  a {
+    font-size: 1em;
+    color: rgb(84,131,145);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    &:hover {
+      color: rgb(236,105,111);
+    }
+    &:first-child {
+      float: left;
+    }
+    &:last-child {
+      float: right;
+    }
+  }
+}
