@@ -100,6 +100,14 @@ samp {
     @include breakpoint(max-width 400px){
       font-size: 18px;
     }
+
+    a {
+      text-decoration: none;
+      color: rgb(46,68,78);
+      &:hover {
+        color: rgb(123,201,212);
+      }
+    }
   }
 
   h2 {
@@ -136,6 +144,11 @@ li {
   &:hover {
     color: rgb(46,68,78);
   }
+
+}
+
+strong {
+  font-weight: bold;
 }
 
 // .copy-path {

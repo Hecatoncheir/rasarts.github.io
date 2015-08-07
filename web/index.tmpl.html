@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{site.title}}</title>
+    {{> templates/partials/_meta.html}}
 
     <link rel="stylesheet" href="stylesheets/main.css">
     <link rel="stylesheet" href="stylesheets/animate.min.css">
@@ -21,7 +22,7 @@
 
       <article class="post">
 
-        <h1>{{title}}</h1>
+        <h1><a href="{{path}}">{{title}}</a></h1>
         <hr>
         <!-- <span class="copy-path" data-url='{{path}}'>Закопировать ссылку</span> -->
 
