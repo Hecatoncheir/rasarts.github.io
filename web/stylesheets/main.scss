@@ -12,6 +12,8 @@
 @import "modules/header";
 @import "modules/footer";
 
+@import "components/code";
+
 $base-font-size: 16px;
 $base-line-height: 24px;
 $rhythm-unit: "em";
@@ -40,6 +42,7 @@ $column: 3;
   }
 }
 
+.clear {clear: both}
 
 body {
   border: 13px solid rgb(47,68,78);
@@ -47,13 +50,29 @@ body {
   padding: 10px;
 
   font-family: 'Ubuntu Medium';
+  font-style: normal;
   line-height: 24px;
+}
+
+body {
+  word-wrap: break-word; /* force long words to break */
+  overflow-wrap: break-word; /* newer syntax standard that replaces word-wrap */
+}
+
+code,
+pre,
+samp {
+  white-space: pre-wrap; /* force long lines to break */
 }
 
 
 .marker {
-  background: #3b3e45;
-  color: #bad300;
+  // background: #3b3e45;
+  // color: #bad300;
+  background: rgb(221,107,110);
+  color: rgb(249,241,234);
+  padding: 4px 6px;
+  // border-radius: 8px;
 }
 
 
@@ -63,8 +82,11 @@ body {
   font-family: 'Ubuntu Medium';
   @include adjust-font-size-to(19px);
 
+
   .post {
     clear: both;
+    display: none;
+    
   }
 
   h1 {
@@ -101,3 +123,27 @@ body {
     height: 3px; /* Толщина линии */
   }
 }
+
+li {
+  list-style: circle;
+  margin: 10px 0;
+  margin-left: 40px;
+  font-style: italic;
+}
+
+.post a {
+  color: rgb(221,107,110);
+  &:hover {
+    color: rgb(46,68,78);
+  }
+}
+
+// .copy-path {
+//   @include adjust-font-size-to(12px);
+//   cursor: pointer;
+//   font-weight: normal;
+//   background: rgb(46,68,78);
+//   color: rgb(249,241,234);
+//   padding: 2px 4px;
+//   border-radius: 4px;
+// }

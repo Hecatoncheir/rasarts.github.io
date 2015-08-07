@@ -5,24 +5,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{site.title}}</title>
+
     <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/animate.min.css">
+
+    <script src='scripts/dev.js'></script>
 
   </head>
   <body>
     {{> templates/partials/_header.html}}
 
     <section class="posts">
-    {{#site.posts.all}}
-      <h1>{{title}}</h1>
-      <hr>
+    {{# site.posts.all}}
+
+
       <article class="post">
-        <p>{{content}}</p>
+
+        <h1>{{title}}</h1>
+        <hr>
+        <!-- <span class="copy-path" data-url='{{path}}'>Закопировать ссылку</span> -->
+
+        {{#not_ready}}
+          <span class="marker">{{status}}</span>
+        {{/not_ready}}
+        {{^ not_ready}}
+          {{content}}
+        {{/not_ready}}
       </article>
-    {{/site.posts.all}}
+    {{/ site.posts.all}}
     </section>
 
     {{> templates/partials/_footer.html}}
 
+    <script src='scripts/prism.js'></script>
+
+    <script type="application/dart" src='scripts/main.dart'></script>
+    <script src='packages/browser/dart.js'></script>
 
   </body>
 </html>

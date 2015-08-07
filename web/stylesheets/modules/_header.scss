@@ -40,7 +40,8 @@
   min-width: 340px;
   margin: 0 auto;
 
-  a {
+  span {
+    cursor: pointer;
     font-size: 1em;
     color: rgb(84,131,145);
     font-weight: bold;
