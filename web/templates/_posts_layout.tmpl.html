@@ -5,20 +5,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}} | {{site.title}}</title>
+
     <link rel="stylesheet" href="/stylesheets/main.css">
+    <script src='/scripts/dev.js'></script>
 
   </head>
   <body>
-    {{> /templates/partials/_header.html}}
+    {{> /templates/partials/_inner_header.html}}
 
-    <section>
-      <article>
+    <section class="posts">
+      <article class="post" style="display: block">
         <h1>{{title}}</h1>
         {{content}}
       </article>
     </section>
 
-    {{> /templates/partials/_footer.html}}
+    {{> /templates/partials/_inner_footer.html}}
+
+    <script src='/scripts/prism.js'></script>
 
   </body>
 </html>

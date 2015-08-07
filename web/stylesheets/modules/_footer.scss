@@ -8,6 +8,8 @@
   width: 100%;
   left: -10px;
 
+  color: #f9f1ea;
+
   a {
     color: #f9f1ea;
     float: left;
@@ -18,4 +20,14 @@
       color: #dd6b6e;
     }
   }
+
+  .lic {
+    @include adjust-font-size-to(10px);
+  }
+
+  .all-links {
+    @include adjust-font-size-to(22px);
+    color: #DD4A68; 
+  }
+
 }

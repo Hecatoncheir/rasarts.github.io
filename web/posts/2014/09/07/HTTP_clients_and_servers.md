@@ -3,6 +3,8 @@ title: HTTP-клиенты и сервера
 date: 2014/09/7
 id: 1231f4a0-7762-4cee-9a00-7470fb6b417f
 not_ready: false
+next_post: posts/2014/08/10/Using_HTTP_resources_with_HttpRequest.html
+prev_post: posts/2015/08/05/The_Dart_Vm_execution_model.html
 labels:
   - Label
 -->
