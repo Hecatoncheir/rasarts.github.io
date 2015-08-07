@@ -1,5 +1,9 @@
+library w3guru;
+
 import 'dart:html';
 import 'dart:async';
+
+part 'vim_nav.dart';
 
 List posts = querySelectorAll('.post');
 var navPrevPost = querySelectorAll('.prev-post');
@@ -71,6 +75,7 @@ makePostsNavigation(){
 
 main(){
   // var copyPath = querySelector('.copy-path');
+  makeVimNavigation();
   makePostsNavigation();
   activatePost(posts.first);
   checkPrevPost();
