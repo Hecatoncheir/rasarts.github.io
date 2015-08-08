@@ -13,8 +13,9 @@ makeVimNavigation(){
   window.addEventListener('keypress', (event){
     // event.stopPropagation();
     var key = event.keyCode;
+    print(key);
 
-    if(key == 102 || key == 1088){
+    if(key == 104 || key == 1088){
       activatePrevPost();
     }
     if(key == 106 || key == 1086){
