@@ -1,5 +1,5 @@
 <!--
-title: HTTP-клиент и сервер
+title: HTTP-&shy;клиент и сер&shy;вер
 date: 2014/09/7
 id: 1231f4a0-7762-4cee-9a00-7470fb6b417f
 not_ready: false

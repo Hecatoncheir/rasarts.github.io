@@ -1,5 +1,5 @@
 <!--
-title: Отправка и получение данных с помощью websockets
+title: Отправка и полу&shy;че&shy;ние дан&shy;ных с помощ&shy;ью web&shy;sockets
 date: 2014/09/7
 id: 31c0e4cf-3819-4df5-89e0-7b4c627706f5
 not_ready: false
