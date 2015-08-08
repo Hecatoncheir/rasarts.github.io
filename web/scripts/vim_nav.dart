@@ -13,7 +13,6 @@ makeVimNavigation(){
   window.addEventListener('keypress', (event){
     // event.stopPropagation();
     var key = event.keyCode;
-    print(key);
 
     switch(key){
       case(104):
