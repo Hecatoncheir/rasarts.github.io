@@ -1,0 +1,11 @@
+blockquote {
+  margin: 10px 0;
+  padding: 10px;
+  background: #fff;
+  border-top: 1px dashed rgb(221,107,110);
+  color: #666;
+
+  strong:first-child {
+    color: #7bc9d4;
+  }
+}

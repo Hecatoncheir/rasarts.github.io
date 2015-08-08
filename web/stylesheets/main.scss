@@ -8,6 +8,7 @@
 
 @import "components/shake";
 @import "components/breakpoint";
+@import "components/blockquotes";
 
 @import "modules/header";
 @import "modules/footer";
@@ -86,6 +87,10 @@ samp {
   .post {
     clear: both;
     display: none;
+
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
 
   }
 
