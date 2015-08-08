@@ -1,20 +1,20 @@
 .main-footer {
-  clear: both;
-  background: #2f444e;
-  border: 10px solid #2f444e;
-
-  position: relative;
-  bottom: -10px;
-  width: 100%;
   left: -10px;
+  bottom: -10px;
 
+  border: 10px solid #2f444e;
+  background: #2f444e;
+
+  clear: both;
   color: #f9f1ea;
+  position: relative;
+  width: 100%;
 
   a {
     color: #f9f1ea;
     float: left;
-    margin-right: 10px;
     font-family: 'Ubuntu Bold';
+    margin-right: 10px;
     text-decoration: none;
     &:hover {
       color: #dd6b6e;
@@ -27,7 +27,7 @@
 
   .all-links {
     @include adjust-font-size-to(22px);
-    color: rgb(123,201,212); 
-  }
 
+    color: rgb(123,201,212);
+  }
 }

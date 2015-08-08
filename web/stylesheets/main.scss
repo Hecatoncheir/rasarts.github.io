@@ -1,54 +1,57 @@
 @import 'compass/reset';
-@import "compass/css3";
-@import "compass/typography/vertical_rhythm";
-@import "compass/css3/user-interface";
+@import 'compass/css3';
+@import 'compass/typography/vertical_rhythm';
+@import 'compass/css3/user-interface';
 
-@import "fonts";
-@import "mixins";
+@import 'fonts';
+@import 'mixins';
 
-@import "components/shake";
-@import "components/breakpoint";
-@import "components/blockquotes";
+@import 'components/shake';
+@import 'components/breakpoint';
+@import 'components/blockquotes';
 
-@import "modules/header";
-@import "modules/footer";
+@import 'modules/header';
+@import 'modules/footer';
 
-@import "components/code";
-
+@import 'components/code';
 $base-font-size: 16px;
 $base-line-height: 24px;
-$rhythm-unit: "em";
+$rhythm-unit: 'em';
 $min-line-padding: 2px;
-
 $color-text: #3b3e45;
 $color-marked: #bad300;
 $column: 3;
 
 
 .column {
-  -moz-column-count: $column;
-  -webkit-column-count: $column;
-  column-count:$column;
-  column-gap: 20px;
-  -webkit-column-break-inside:avoid;
-  -moz-column-break-inside:avoid;
-  -o-column-break-inside:avoid;
-  -ms-column-break-inside:avoid;
-  column-break-inside:avoid;
-  padding: 20px 0;
   @include breakpoint(max-width 600px) {
-    -moz-column-count: 1;
     -webkit-column-count: 1;
-    column-count: 1;
+       -moz-column-count: 1;
+            column-count: 1;
   }
+
+  padding: 20px 0;
+
+  -webkit-column-break-inside: avoid;
+     -moz-column-break-inside: avoid;
+      -ms-column-break-inside: avoid;
+       -o-column-break-inside: avoid;
+          column-break-inside: avoid;
+  -webkit-column-count: $column;
+     -moz-column-count: $column;
+          column-count: $column;
+  column-gap: 20px;
 }
 
-.clear {clear: both}
+.clear {
+  clear: both;
+}
 
 body {
+  padding: 10px;
+
   border: 13px solid rgb(47,68,78);
   background: rgb(249,241,234);
-  padding: 10px;
 
   font-family: 'Ubuntu Medium';
   font-style: normal;
@@ -56,59 +59,69 @@ body {
 }
 
 body {
-  word-wrap: break-word; /* force long words to break */
   overflow-wrap: break-word; /* newer syntax standard that replaces word-wrap */
+  word-wrap: break-word; /* force long words to break */
 }
 
-code,
-pre,
-samp {
+code, pre, samp {
   white-space: pre-wrap; /* force long lines to break */
 }
 
 
 .marker {
+  padding: 4px 6px;
   // background: #3b3e45;
   // color: #bad300;
+
   background: rgb(221,107,110);
+
   color: rgb(249,241,234);
-  padding: 4px 6px;
   // border-radius: 8px;
 }
 
 
 .posts {
+  @include adjust-font-size-to(19px);
+
   padding: 30px;
+
   display: block;
   font-family: 'Ubuntu Medium';
-  @include adjust-font-size-to(19px);
 
 
   .post {
     clear: both;
     display: none;
-
-    -moz-hyphens: auto;
     -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-
+       -moz-hyphens: auto;
+        -ms-hyphens: auto;
   }
 
   h1 {
-    text-align: center;
-    padding: 10px 0;
-    color: rgb(46,68,78);
     @include adjust-font-size-to(40px);
-    text-transform: uppercase;
-    font-weight: bold;
-    font-family: 'Ubuntu Bold';
-    @include breakpoint(max-width 400px){
+    @include breakpoint(max-width 400px) {
       font-size: 18px;
     }
 
+    padding: 10px 0;
+
+    color: rgb(221,107,110);
+    font-family: '2p';
+    font-weight: bold;
+    text-align: center;
+    // color: #FE2;
+    text-shadow: -1px 1px rgb(123,201,212), -2px 2px rgb(123,201,212), -3px 3px rgb(123,201,212);
+    text-transform: uppercase;
+
+    &:hover {
+      color: rgb(123,201,212);
+      text-shadow: -1px 1px rgb(221,107,110), -2px 2px rgb(221,107,110), -3px 3px rgb(221,107,110);
+    }
+
     a {
+      // color: rgb(46,68,78);
+      color: inherit;
       text-decoration: none;
-      color: rgb(46,68,78);
       &:hover {
         color: rgb(123,201,212);
       }
@@ -117,10 +130,12 @@ samp {
 
   h2 {
     @include adjust-font-size-to(20px);
-    font-weight: bold;
-    font-family: 'Ubuntu Bold';
+
     padding: 20px 0;
+
     color: rgb(46,68,78);
+    font-family: 'Ubuntu Bold';
+    font-weight: bold;
   }
 
   h3 {
@@ -129,19 +144,21 @@ samp {
   }
 
   hr {
-    width: 20%;
-    color: rgb(221,107,110);
-    background-color: rgb(221,107,110);
     border: none; /* Убираем границу для браузера Firefox */
+
+    background-color: rgb(221,107,110);
+    color: rgb(221,107,110);
     height: 3px; /* Толщина линии */
+    width: 20%;
   }
 }
 
 li {
-  list-style: circle;
   margin: 10px 0;
-  margin-left: 40px;
+
   font-style: italic;
+  list-style: circle;
+  margin-left: 40px;
 }
 
 .post a {
@@ -149,7 +166,6 @@ li {
   &:hover {
     color: rgb(46,68,78);
   }
-
 }
 
 strong {
