@@ -2,6 +2,7 @@ build/
 .sass-cache/
 .pub/
 packages
+.packages
 pubspec.lock
 tags
 .tags
