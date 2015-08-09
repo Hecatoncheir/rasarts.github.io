@@ -10,10 +10,18 @@
   position: relative;
   width: 100%;
 
+  font-family: 'Ubuntu Medium';
+  font-weight: normal;
+  font-style: normal;
+
+  @include adjust-font-size-to(14px);
+
   a {
     color: #f9f1ea;
     float: left;
-    font-family: 'Ubuntu Bold';
+    font-family: 'Ubuntu Medium';
+    font-weight: normal;
+    font-style: normal;
     margin-right: 10px;
     text-decoration: none;
     &:hover {

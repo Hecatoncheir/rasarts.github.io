@@ -1,0 +1,29 @@
+.icons {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+.icon {
+  display: block;
+}
+
+.gh-icon {
+  width: 35px;
+  height: 35x;
+  margin: 0 auto;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  #GitHub-Mark {
+    fill: rgb(123,201,212);
+  }
+
+  &:hover {
+    #GitHub-Mark {
+      fill: rgb(221,107,110);
+    }
+  }
+}

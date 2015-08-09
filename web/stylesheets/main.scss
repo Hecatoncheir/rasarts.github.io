@@ -12,6 +12,7 @@
 
 @import 'modules/header';
 @import 'modules/footer';
+@import 'modules/icons';
 
 @import 'components/code';
 $base-font-size: 16px;
@@ -81,13 +82,14 @@ code, pre, samp {
 
 
 .posts {
-  @include adjust-font-size-to(19px);
+  @include adjust-font-size-to(16px);
 
   padding: 30px;
 
   display: block;
   font-family: 'Ubuntu Medium';
-
+  font-style: normal;
+  font-weight: normal;
 
   .post {
     clear: both;

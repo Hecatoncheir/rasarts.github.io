@@ -16,6 +16,33 @@
     url('../fonts/press-start-2p/press-start-2p-webfont.svg#press_start_2pregular') format('svg');
 }
 
+@font-face
+{
+    font-family: 'Ubuntu Medium';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('../fonts/ubuntu-medium/ubuntu-m-webfont.eot');
+    src: url('../fonts/ubuntu-medium/ubuntu-m-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ubuntu-medium/ubuntu-m-webfont.woff2') format('woff2'),
+    url('../fonts/ubuntu-medium/ubuntu-m-webfont.woff') format('woff'),
+    url('../fonts/ubuntu-medium/ubuntu-m-webfont.ttf') format('truetype'),
+    url('../fonts/ubuntu-medium/ubuntu-m-webfont.svg#press_start_2pregular') format('svg');
+}
+
+@font-face
+{
+    font-family: 'Ubuntu Bold';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('../fonts/ubuntu-medium/ubuntu-b-webfont.eot');
+    src: url('../fonts/ubuntu-medium/ubuntu-b-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ubuntu-medium/ubuntu-b-webfont.woff2') format('woff2'),
+    url('../fonts/ubuntu-medium/ubuntu-b-webfont.woff') format('woff'),
+    url('../fonts/ubuntu-medium/ubuntu-b-webfont.ttf') format('truetype'),
+    url('../fonts/ubuntu-medium/ubuntu-b-webfont.svg#press_start_2pregular') format('svg');
+}
 
 @include font-face('Ubuntu Light', font-files('ubuntu-light/ubuntu-l-webfont.ttf','ubuntu-light/ubuntu-l-webfont.woff', 'ubuntu-light/ubuntu-l-webfont.eot'));
 
@@ -23,6 +50,6 @@
 
 @include font-face('Ubuntu Regular', font-files('ubuntu-regular/ubuntu-r-webfont.ttf','ubuntu-regular/ubuntu-r-webfont.woff', 'ubuntu-regular/ubuntu-r-webfont.eot'));
 
-@include font-face('Ubuntu Medium', font-files('ubuntu-medium/ubuntu-m-webfont.ttf','ubuntu-medium/ubuntu-m-webfont.woff', 'ubuntu-medium/ubuntu-m-webfont.eot'));
+// @include font-face('Ubuntu Medium', font-files('ubuntu-medium/ubuntu-m-webfont.ttf','ubuntu-medium/ubuntu-m-webfont.woff', 'ubuntu-medium/ubuntu-m-webfont.eot'));
 
-@include font-face('Ubuntu Bold', font-files('ubuntu-bold/ubuntu-b-webfont.ttf','ubuntu-bold/ubuntu-b-webfont.woff', 'ubuntu-bold/ubuntu-b-webfont.eot'));
+// @include font-face('Ubuntu Bold', font-files('ubuntu-bold/ubuntu-b-webfont.ttf','ubuntu-bold/ubuntu-b-webfont.woff', 'ubuntu-bold/ubuntu-b-webfont.eot'));

@@ -3,6 +3,10 @@
 :not(pre) > code[class*='language-'], pre[class*='language-'] {
   background-color: rgb(249, 245, 242) !important;
 }
+
+code {
+  @include adjust-font-size-to(17px);
+}
 //
 // code {
 //   display: block;
