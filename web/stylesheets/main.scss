@@ -82,12 +82,13 @@ code, pre, samp {
 
 
 .posts {
-  @include adjust-font-size-to(16px);
+  @include adjust-font-size-to(20px);
 
   padding: 30px;
 
   display: block;
-  font-family: 'Ubuntu Medium';
+  // font-family: Verdana,sans-serif;
+  font-family: 'Ubuntu Regular';
   font-style: normal;
   font-weight: normal;
 

@@ -30,6 +30,21 @@
     url('../fonts/ubuntu-medium/ubuntu-m-webfont.svg#press_start_2pregular') format('svg');
 }
 
+
+@font-face
+{
+    font-family: 'Ubuntu Regular';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('../fonts/ubuntu-medium/ubuntu-r-webfont.eot');
+    src: url('../fonts/ubuntu-medium/ubuntu-r-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ubuntu-medium/ubuntu-r-webfont.woff2') format('woff2'),
+    url('../fonts/ubuntu-medium/ubuntu-r-webfont.woff') format('woff'),
+    url('../fonts/ubuntu-medium/ubuntu-r-webfont.ttf') format('truetype'),
+    url('../fonts/ubuntu-medium/ubuntu-r-webfont.svg#press_start_2pregular') format('svg');
+}
+
 @font-face
 {
     font-family: 'Ubuntu Bold';
