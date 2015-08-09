@@ -3,7 +3,7 @@ part of w3guru;
 List posts = querySelectorAll('.post');
 var navPrevPost = querySelectorAll('.prev-post');
 var navNextPost = querySelectorAll('.next-post');
-const ms = const Duration(milliseconds: 800);
+const ms = const Duration(milliseconds: 200);
 
 var inRightEffect = 'zoomInRight';
 var outLeftEffect = 'fadeOutLeft';
