@@ -40,19 +40,25 @@
   margin: 0 auto;
 
   position: relative;
-  width: 40%;
 
   @include breakpoint(min-width 200px){
     width: 70%;
   }
 
+  @include breakpoint(min-width 500px){
+    width: 40%;
+  }
+
   span, a {
     color: rgb(84,131,145);
     cursor: pointer;
-    @include adjust-font-size-to(16px);
 
-    @include breakpoint(min-width 200px){
+    @include breakpoint(min-width 300px){
       @include adjust-font-size-to(6px);
+    }
+
+    @include breakpoint(min-width 580px){
+      @include adjust-font-size-to(16px);
     }
 
     font-weight: bold;
