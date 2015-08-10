@@ -13,20 +13,16 @@ var activePostId;
 
 checkNextPost(){
   if(activePostId + 1 < posts.length){
-    // return true;
     navNextPost.style.display = 'block';
   } else {
-    // return false;
     navNextPost.style.display = 'none';
   }
 }
 
 checkPrevPost(){
   if(activePostId - 1 < 0){
-    // return false;
     navPrevPost.style.display = 'none';
   } else {
-    // return true;
     navPrevPost.style.display = 'block';
   }
 }
@@ -72,12 +68,13 @@ activatePrevPost(){
 }
 
 makePostsNavigation(){
+  makeTouchEvents();
+
   navNextPost.onClick.listen((event){
     activateNextPost();
   });
-
+  
   navPrevPost.onClick.listen((event){
     activatePrevPost();
   });
-
 }
