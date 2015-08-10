@@ -14,7 +14,7 @@ makeTouchEvents() {
 
   window.onTouchEnd.listen((event) {
 
-    if (xUpdate > xStart) {
+    if (xUpdate + 150 > xStart) {
       /* left swipe */
       activatePrevPost();
     } else {
