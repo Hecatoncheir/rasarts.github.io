@@ -78,6 +78,13 @@ body {
   word-wrap: break-word; /* force long words to break */
 }
 
+a {
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  -o-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+
 code, pre, samp {
   white-space: pre-wrap; /* force long lines to break */
 }
@@ -115,6 +122,11 @@ code, pre, samp {
   }
 
   h1 {
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+
     @include adjust-font-size-to(40px);
     @include breakpoint(max-width 400px) {
       font-size: 18px;
