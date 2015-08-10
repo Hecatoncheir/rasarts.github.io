@@ -25,16 +25,22 @@ $column: 3;
 
 
 .column {
-  @include breakpoint(max-width 600px) {
+  @include breakpoint(min-width 300px) {
     -webkit-column-count: 1;
        -moz-column-count: 1;
             column-count: 1;
   }
 
-  @include breakpoint(max-width 900px){
+  @include breakpoint(min-width 600px){
     -webkit-column-count: 2;
        -moz-column-count: 2;
-            column-count: 2;  
+            column-count: 2;
+  }
+
+  @include breakpoint(min-width 800px){
+    -webkit-column-count: 3;
+       -moz-column-count: 3;
+            column-count: 3;
   }
 
   padding: 20px 0;
@@ -59,6 +65,8 @@ body {
 
   border: 13px solid rgb(47,68,78);
   background: rgb(249,241,234);
+
+  min-width: 400px;
 
   font-family: 'Ubuntu Medium';
   font-style: normal;
