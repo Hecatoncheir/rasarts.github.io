@@ -2,7 +2,8 @@
 title: Отправка и полу&shy;че&shy;ние дан&shy;ных с помощ&shy;ью web&shy;sockets
 date: 2014/09/7
 id: 31c0e4cf-3819-4df5-89e0-7b4c627706f5
-not_ready: false
+category: Примеры кода Dart
+icon: dart_tutorial
 next_post: posts/2014/09/07/HTTP_clients_and_servers.html
 prev_post: posts/2015/08/05/The_Dart_Vm_execution_model.html
 labels:

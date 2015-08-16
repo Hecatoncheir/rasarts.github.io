@@ -1,50 +1,29 @@
 <!DOCTYPE html>
-
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{site.title}}</title>
+<html lang="en" class="no-js">
+	<head>
     {{> templates/partials/_meta.html}}
-
-    <link rel="stylesheet" href="stylesheets/main.css">
-    <link rel="stylesheet" href="stylesheets/animate.min.css">
-
-    <script src='scripts/dev.js'></script>
-
   </head>
   <body>
-    {{> templates/partials/_header.html}}
+  <div class="container">
+    {{> templates/partials/_sidebar.html}}
 
-    <section class="posts">
-    {{# site.posts.all}}
+		<div id="theGrid" class="main">
+			<section class="grid">
+				{{> templates/partials/_post_preview.html}}
+			</section> <!-- grid -->
 
+			<section class="content">
+				<div class="scroll-wrap">
+					{{> templates/partials/_post_content.html}}
 
-      <article class="post">
+					<button class="close-button">
+						<i class="fa fa-close"></i><span>Close</span>
+					</button>
+				</section>
 
-        <h1><a href="{{path}}">{{title}}</a></h1>
-        <hr>
-        <br><br>
-        <!-- <span class="copy-path" data-url='{{path}}'>Закопировать ссылку</span> -->
+		</div>
 
-        {{#not_ready}}
-          <span class="marker">{{status}}</span>
-        {{/not_ready}}
-        {{^ not_ready}}
-          {{content}}
-        {{/not_ready}}
-      </article>
-    {{/ site.posts.all}}
-    </section>
-
-    {{> templates/partials/_github.html}}
-
-    {{> templates/partials/_footer.html}}
-
-    <script src='scripts/prism.js'></script>
-
-    <script type="application/dart" src='scripts/main.dart'></script>
-    <script src='packages/browser/dart.js'></script>
-
-  </body>
-</html>
+  </div><!-- /container -->
+  {{> templates/partials/_footer.html}}
+</body>
+</html

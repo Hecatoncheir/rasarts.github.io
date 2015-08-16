@@ -2,7 +2,8 @@
 title: HTTP-&shy;клиент и сер&shy;вер
 date: 2014/09/7
 id: 1231f4a0-7762-4cee-9a00-7470fb6b417f
-not_ready: false
+category: Примеры кода
+icon: dart_tutorial
 next_post: posts/2014/08/10/Using_HTTP_resources_with_HttpRequest.html
 prev_post: posts/2014/09/07/Sending_and_receiving_real-time_data_with_WebSockets.html
 labels:
