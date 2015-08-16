@@ -1,32 +1,51 @@
 <!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}} | {{site.title}}</title>
-    {{> /templates/partials/_meta.html}}
+		<title>{{site.title}}</title>
 
+		<meta name="description" content="Main rasart.pro@gmail.com site" />
+		<meta name="keywords" content="grid, layout, effect, animated, responsive, template, web design" />
+		<meta name="author" content="rasart.pro@gmail.com" />
+		<link rel="shortcut icon" href="{{site.url}}/images/fav.png">
 
-    <link rel="stylesheet" href="{{site.remote-url}}/stylesheets/main.css">
-    <script src='{{site.remote-url}}/scripts/dev.js'></script>
-
+		<link rel="stylesheet" type="text/css" href="{{site.url}}/fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="{{site.url}}/stylesheets/main.css" />
   </head>
   <body>
+		<section class="content content--show" style="top: 0px;">
+					<div class="scroll-wrap">
 
-    <section class="posts">
-      <article class="post" style="display: block">
-        <h1>{{title}}</h1>
-        <br><br>
-        {{content}}
-      </article>
-    </section>
+	<div class="posts">
+	  <div class="post">
+	    <article class="content__item content__item--show">
+	      <span class="category category--full">{{category}}</span>
+	      <a href="/"><h2 class="title title--full">{{title}}</h2></a>
+	      <div class="meta meta--full">
+	        <img class="meta__avatar" src="{{site.url}}/images/post_icon/dart_learning.png" alt="author01">
+	        <span class="meta__author"></span>
+	        <span class="meta__date"><i class="fa fa-calendar-o"></i> {{date.human}}</span>
+	        <span class="meta__reading-time"><i class="fa fa-tags"></i> {{labels}}</span>
+	      </div>
 
+				{{content}}
 
-    <script src='{{site.remote-url}}/scripts/prism.js'></script>
+	    </article>
+	  </div>
+	</div>
+	<a href="/">
+		<button class="close-button close-button--show">
+			<i class="fa fa-close"></i><span>Close</span>
+		</button>
+	</a>
+</div></section>
 
-    <script type="application/dart" src='{{site.remote-url}}/scripts/main.dart'></script>
-    <script src='{{site.remote-url}}/packages/browser/dart.js'></script>
+	<script type="application/dart" src='{{site.url}}/scripts/main.dart'></script>
+	<script src='{{site.url}}/packages/browser/dart.js'></script>
 
-  </body>
-</html>
+	<script src='{{site.url}}/scripts/syntax_highlight/prism.js'></script>
+</body>
+</html

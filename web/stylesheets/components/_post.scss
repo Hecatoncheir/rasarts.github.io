@@ -45,6 +45,9 @@
     font-weight: bold;
     color: #bad300;
   }
+  .title:hover {
+    color: #7bc9d4;
+  }
   p {
     @include adjust-font-size-to(18px);
   }
