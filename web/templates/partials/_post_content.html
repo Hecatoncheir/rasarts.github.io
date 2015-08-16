@@ -1,0 +1,18 @@
+
+<div class="posts">
+{{# site.posts.all}}
+  <div class="post">
+    <article class="content__item">
+      <span class="category category--full">{{category}}</span>
+      <a href="{{path}}"><h2 class="title title--full">{{title}}</h2></a>
+      <div class="meta meta--full">
+        <img class="meta__avatar" src="{{site.url}}/images/post_icon/{{icon}}.png" alt="author01" />
+        <span class="meta__author"></span>
+        <span class="meta__date"><i class="fa fa-calendar-o"></i> {{date.human}}</span>
+        <span class="meta__reading-time"><i class="fa fa-tags"></i> {{labels}}</span>
+      </div>
+        {{content}}
+    </article>
+  </div>
+{{/ site.posts.all}}
+</div>

@@ -2,11 +2,13 @@
 title: Отправка и полу&shy;че&shy;ние дан&shy;ных с помощ&shy;ью web&shy;sockets
 date: 2014/09/7
 id: 31c0e4cf-3819-4df5-89e0-7b4c627706f5
-not_ready: false
+category: Примеры кода Dart
+icon: dart_tutorial
 next_post: posts/2014/09/07/HTTP_clients_and_servers.html
 prev_post: posts/2015/08/05/The_Dart_Vm_execution_model.html
 labels:
-  - Label
+  - Dart
+  - WebSocket
 -->
 
 WebSocket позволяет приложениям обмениваться данными с сервером в интерактивном режиме без необходимости создавать запрос каждый раз. Сервер создает WebSocket и слушает запросы на определенном URL, который начинается с `ws://` - к примеру, `ws://127.0.0.1:1337/ws`. Данные передаваемые по WebSocket могут быть строками, blob или [ArrayBuffer](http://api.dartlang.org/html/ArrayBuffer.html). Чаще всего данные передаются строками в формате JSON.

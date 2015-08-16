@@ -2,6 +2,8 @@
 title: Установка Dart в C9
 date: 2015/08/12
 id: 7721726f-651a-48b1-94d3-c53977308c1b
+category: Примеры кода Dart
+icon: dart_tutorial
 labels:
   - Dart
   - C9

@@ -2,11 +2,13 @@
 title: Исполь&shy;зова&shy;ние HTTP Resources с Http&shy;Request
 date: 2014/08/10
 id: 31e2b61a-191c-48a0-877c-ec123d105dda
-not_ready: false
+category: Примеры кода Dart
+icon: dart_tutorial
 next_post: #
 prev_post: posts/2014/09/07/HTTP_clients_and_servers.html
 labels:
-  - Label
+  - Dart
+  - HTTP
 -->
 
 Ранее известный как `XMLHttpRequest`, класс `HttpRequest` предоставляет вашим приложениям доступ к Http-ресурсам. Традиционно AJAX-приложения очень широко используют HttpRequest. Используя `HttpRequest`, можно динамически подгружать данные JSON или любой другой ресурс с сервера.
