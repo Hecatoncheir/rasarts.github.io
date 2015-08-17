@@ -37,7 +37,17 @@ $sansserif: 'Martel Sans', Arial, sans-serif;
   //h1 {
   //  @include adjust-font-size-to(28px);
   //}
+  code, pre {
+    max-width: 1200px;
+    margin: auto;
+  }
+  pre[class*="language-"]{
+    margin: .5em auto;
+    max-width: 1200px;
+  }
   h2 {
+    max-width: 1200px;
+    margin: auto;
     @include adjust-font-size-to(22px);
     color: #3b3e45;
     font-weight: bold;
@@ -64,10 +74,16 @@ $sansserif: 'Martel Sans', Arial, sans-serif;
     font-weight: bold;
   }
 
-  ul {
+  em {
+    font-style: italic;
+  }
+
+  ul,ol {
+    max-width: 1200px;
     @include adjust-font-size-to(16px);
-    margin: 10px;
-    margin-left: 40px;
+    margin: 10px auto;
+    /*margin-left: 5%;*/
+    padding-left: 40px;
     li{
       list-style-type: circle;
       margin: 5px 0;

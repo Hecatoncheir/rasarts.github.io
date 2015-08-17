@@ -30,6 +30,68 @@ labels:
 - Есть возможность реализации множества различных объектов зеркал с разными уровнями отражения
 - Зеркала возможно использовать в приложениях командной строки или web. 
 
+##Собственные аннотации
+Допустим, нам надо сделать фреймворк для тестирования. Для этого нам понадобится несколько аннотаций, что бы иметь возможность отметить методы в тестируемом классе, которые должны проходить проверку. Следующий код имеет две аннотации. В случае где нам нужна аннотация только для пометки, мы используем неизменное слово **test**. В случае, если мы должны передавать параметры в аннотацию, мы будем использовать класс **Test** с константным конструктором, как показано в следующем коде:
+
+```language-dart
+
+library test;
+
+// test - аннотация для простой пометки
+const String test = "test";
+
+// Test - аннотация с параметрами
+class Test {
+  // Нужно ли игнорировать тестирование для метода?
+  final bool include;
+  // Основной constant конструктор
+  const Test({this.include:true});
+
+  String toString() => 'test';
+}
+
+```
+
+Класс Test солержит финализированную (final) переменную инициализированную со значением по умолчанию *true*. Для того что бы исключить помеченный метод из тестирования, мы должны передать аннотации в качестве параметра *false*:
+
+```language-dart
+
+library test.case;
+
+import 'test.dart';
+import 'engine.dart';
+
+// Тестирование для Engine
+class TestCase {
+  Engine engine = new Engine();
+  
+  // Запуск двигателя
+  @test
+  testStart() {
+    engine.start();
+    if (!engine.started) throw new Exception("Двигатель должен быть запущен");
+  }
+  
+  // Остановка двигателя
+  @Test()
+  testStop() {
+    engine.stop();
+    if (engine.started) throw new Exception("Двигатель необходимо выключить");
+  }
+  
+  // Прогрев двигателя
+  @Test(include:false)
+  testWarmUp() {
+    // ...
+  }
+} 
+
+```
+
+Здесь мы тестируем класс Engine, вызывая *testStart* и *testStop* методы в классе *TestCase*, и игнорируем метод прогрева двигателя - *testWarmUp*.
+
+Как можно реально использовать аннотации? Аннотации очень хорошо работают  вместе с отражением (reflection), во время выполнения программы.
+
 ##Самоанализ в действии
 
 Для демонстрации **отражений (Mirrors)**, мы будем использовать простой **самоанализ (introspection)**.
@@ -50,3 +112,44 @@ class TypeInspector {
   }
 }
 ```
+Класс ClassMirror содержит всю информацию о наблюдаемом типе. По факту мы проводим самоанализ в функции reflectClass и возвращаем явный объект Mirror. Затем мы можем вызвать метод **getAnnotatedMethods** и указать интересующую нас аннотацию. Это позволит вернуть список (list) *MethodMirror* который будет содержать аннотированныe методы. Шаг за шагом мы движемся через все созданные сущьности и вызываем скрытый метод **_isMethodAnnotated**. Если результат выполнения метода _isMethodAnnotated положителен, то мы добавляем обнаруженный метод в список найденных MethodMirror:
+
+```language-dart 
+
+// Результатом будет список отзеркаленых методов, помеченных [аннотацией].
+  List<MethodMirror> getAnnotatedMethods(String annotation) {
+    List<MethodMirror> result = [];
+    // Получение всех методов
+    _classMirror.instanceMembers.forEach(
+      (Symbol name, MethodMirror method) {
+       if (_isMethodAnnotated(method, annotation)) {
+          result.add(method);
+       }
+    });
+    return result;
+  }
+
+```
+
+Первый аргумент функци _isMethodAnnotated содержит свойство **metadata** в котором находится список аннотаций. Второй аргумент этого метода - название аннотации которое мы хотели бы найти. Переменная **inst** содержит ссылку на оригинальный объект в свойсте **reflectee**. Мы проходим через все аннотированные методы из списка **metadata** что бы исключить некоторые из них с аннотацией типа Test помеченные как false. Все остальные аннотированные методы необходимо сравнить с названием аннотации:
+
+```language-dart
+
+// Check is [method] annotated with [annotation].
+ bool _isMethodAnnotated(MethodMirror method, String annotation) {
+    return method.metadata.any(
+      (InstanceMirror inst) {
+      // For [Test] class we check include condition
+      if (inst.reflectee is Test && 
+        !(inst.reflectee as Test).include) {
+        // Test must be exclude
+        return false;
+      }
+      // Literal compare of reflectee and annotation 
+      return inst.reflectee.toString() == annotation;
+    });
+  }
+}
+
+```
+
