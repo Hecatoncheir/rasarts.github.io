@@ -10,9 +10,8 @@ part 'vim_nav.dart';
 part 'touch_events.dart';
 
 main(){
-  // var copyPath = querySelector('.copy-path');
   makeVimNavigation();
-  makePostsNavigation();
-  activatePost(posts.first);
-  checkPrevPost();
+  // makePostsNavigation();
+  // activatePost(posts.first);
+  // checkPrevPost();
 }

@@ -249,11 +249,17 @@ button:focus {
 	right: 55px;
 	bottom: 0px;
 	left: 55px;
-	border-bottom: 1px solid rgba(74,74,74,0.075);
+  border-bottom: 1px solid rgba(74,74,74,0.075);
 }
 
 .grid__item * {
 	z-index: 10;
+}
+
+.grid__item:hover {
+  .title {
+    color: #7bc9d4;
+  }
 }
 
 /* grid item element and full content element styles */
@@ -289,7 +295,8 @@ button:focus {
 	position: absolute;
 	width: 100%;
 	height: 3px;
-	background: #be391e;
+	/*background: #be391e;*/
+  background: #bad300;
 	left: 0;
 	top: -1px;
 	-webkit-transform: scale3d(0,1,1);

@@ -1,3 +1,5 @@
+$serif: 'Playfair Display', serif;
+$sansserif: 'Martel Sans', Arial, sans-serif;
 
 .column {
   @include breakpoint(min-width 300px) {
@@ -41,8 +43,9 @@
     font-weight: bold;
   }
   .title {
-    @include adjust-font-size-to(38px);
+    @include adjust-font-size-to(48px);
     font-weight: bold;
+    font-family: $sansserif;
     color: #bad300;
   }
   .title:hover {
@@ -50,6 +53,7 @@
   }
   p {
     @include adjust-font-size-to(18px);
+    font-family: $serif;
   }
   .meta__reading-time {
     width: auto;
@@ -63,6 +67,7 @@
   ul {
     @include adjust-font-size-to(16px);
     margin: 10px;
+    margin-left: 40px;
     li{
       list-style-type: circle;
       margin: 5px 0;

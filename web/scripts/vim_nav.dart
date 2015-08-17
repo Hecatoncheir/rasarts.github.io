@@ -15,9 +15,9 @@ makeVimNavigation(){
     var key = event.keyCode;
     // print(key);
 
-    if(key == 104 || key == 1088){
-      activatePrevPost();
-    }
+    // if(key == 104 || key == 1088){
+    //   activatePrevPost();
+    // }
     if(key == 106 || key == 1086){
       window.scrollTo(0, currentPosition + scrollStep); currentPosition = window.scrollY;
     }
@@ -25,9 +25,9 @@ makeVimNavigation(){
       window.scrollTo(0, currentPosition - scrollStep);
       currentPosition = window.scrollY;
     }
-    if(key == 108 || key == 1076){
-      activateNextPost();
-    }
+    // if(key == 108 || key == 1076){
+    //   activateNextPost();
+    // }
 
     // switch(key){
     //   case(104):

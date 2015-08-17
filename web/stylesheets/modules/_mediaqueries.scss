@@ -83,10 +83,25 @@ $viewport_xxl: 	$item_width * 6 + $sidebar_width; /* 6 columns */
 		transition: opacity 0.3s;
 	}
 
-	.grid__item:hover::before,
-	.grid__item:focus::before {
-		border: 3px solid rgba(37, 197, 213, 0.5);
-	}
+  .grid__item:hover::before,
+  .grid__item:focus::before {
+    border: 3px solid rgba(37, 197, 213, 0.5);
+  }
+
+	/*.grid__item:nth-child(odd):hover::before,*/
+	/*.grid__item:nth-child(odd):focus::before {*/
+		/*border: 3px solid rgba(37, 197, 213, 0.5);*/
+	/*}*/
+
+	/*.grid__item:nth-child(even):hover::before,*/
+	/*.grid__item:nth-child(even):focus::before {*/
+		/*border: 3px solid rgba(255, 242, 0, 0.5);*/
+	/*}*/
+
+	/*.grid__item:nth-child(3n):hover::before,*/
+	/*.grid__item:nth-child(3n):focus::before {*/
+		/*border: 3px solid rgba(255, 242, 0, 0.5);*/
+	/*}*/
 
 	.grid__item--loading.grid__item::before {
 		opacity: 0;
