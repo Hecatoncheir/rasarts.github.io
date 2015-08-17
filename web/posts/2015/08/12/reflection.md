@@ -135,17 +135,17 @@ class TypeInspector {
 
 ```language-dart
 
-// Check is [method] annotated with [annotation].
+// Проверка аннотации [annotation] метода [method].
  bool _isMethodAnnotated(MethodMirror method, String annotation) {
     return method.metadata.any(
       (InstanceMirror inst) {
-      // For [Test] class we check include condition
+      // Для класса [Test] проверяется состояние переменной include.
       if (inst.reflectee is Test && 
         !(inst.reflectee as Test).include) {
-        // Test must be exclude
+        // Тест должен быть исключён
         return false;
       }
-      // Literal compare of reflectee and annotation 
+      // Буквальное сравнение reflectee и annotation 
       return inst.reflectee.toString() == annotation;
     });
   }
@@ -153,3 +153,32 @@ class TypeInspector {
 
 ```
 
+Mirrors в Dart имеют три основные функции для самоанализа:
+ - **reflect**: Эта функция используется для самоанализа экземпляра, который передается в качестве параметра и сохраняет результат в *InstanceMirror* или *ClosureMirror*. Для первого мы можем вызывать методы, функции, или получать и назначать поля свойства *reflectee*. Для второго мы можем выполнить замыкание.
+- **reflectClass**: Эта функция отражает объявленный класс и возвращяет *ClassMirror*. Она содержит полную информацию о типе переданном в параметр.
+- **reflectType**: Эта функция возвращяет *TypeMirror* и отражает класс, typedef, тип функции или тип переменной.
+
+Так выглядит основной код:
+
+```language-dart
+
+library test.framework;
+
+import 'type_inspector.dart';
+import 'test_case.dart';
+
+main() {
+  TypeInspector inspector = new TypeInspector(TestCase);
+  List methods = inspector.getAnnotatedMethods('test');
+  print(methods);
+}
+
+```
+
+Для начала мы создали экземпляр нашего класса *TypeInspector* и передали проверяемый класс, в нашем случае *TestCase*. Далее, вызвали *getAnnotatedMethods* переменной *inspector* и передали название аннотации, *test*. Вот результат выполнения кода:
+
+```language-dart
+[MethodMirror on 'testStart', MethodMirror on 'testStop']
+```
+
+Метод *inspector* нашёл методы *testStart* и *testStop* и проигнорировал *testWarmUp* в классе *TestCase*, как нам и было нужно.
