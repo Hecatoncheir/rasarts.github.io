@@ -5,9 +5,7 @@ id: 393b5b49-531a-4710-9f16-9417e5e4f1be
 category: Руководство к действию
 icon: tutorial
 labels:
-  - Dart
   - Ruby
-  - Gem
   - Guard
   - LiveReload
 -->
