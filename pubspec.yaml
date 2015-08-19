@@ -4,7 +4,7 @@ autor: Vostrikov Vitaliy <rasart.pro@gmail.com>
 description: Site for my opinions.
 
 dev_dependencies:
-  flare: any
+  flare: 0.6.1
   sass: any
   browser: any
 

@@ -1,5 +1,5 @@
 <!--
-title: Таск grinder для форматирования кода
+title: Таск Grinder для форматирования кода
 date: 2015/08/19
 id: 10ee086f-530e-4ee6-bf5d-517d82be17ef
 category: Руководство к действию
@@ -21,7 +21,14 @@ labels:
 pub global activate grinder
 ```
 
-Так же нам понадобится **dart_style**:
+В *pubspec.yaml* укажем зависимость пакета:
+
+```language-dart
+dev_dependencies:
+  grinder: any
+```
+
+Так же, нам понадобится **dart_style**:
 
 *Установка:*
 ```language-bash
@@ -72,7 +79,7 @@ npm install csscomb -g
 
 ##@Task()
 
-Директория */tools/* в корне проекта будет содержать наши задачи для *Grinder*. Создадим там файл *grind.dart*:
+Директория */tool/* в корне проекта будет содержать наши задачи для *Grinder*. Введём *grinder:init* или создадим файл *grind.dart* в директории *tool* сами:
 
 ```language-dart
 import 'package:grinder/grinder.dart';
@@ -94,16 +101,16 @@ dartFormat() => DartFmt.format(sourceDirectories);
 
 @Task('Форматирование стилей')
 stylesFormat(){
-  Process.run('csscomb',[sourceDirectories['web']]).then((results){
-    log('Стили отформатированы');
-  });
+  run('csscomb',arguments:['web']);
+  log('Styles formated');
 }
 
 @Task('Форматирование кода')
 @Depends(dartFormat,stylesFormat)
 format(){
-  log('Исходные файлы отморматированы');
+  log('All sources formated');
 }
 
 ```
 
+Теперь при вводе команды *grind format* стили и код dart будут аккуратно отформатированы. Так же, можно выполнять задачи отдельно друг от друга командами: *grind dart-format* и *grind styles-format*.
