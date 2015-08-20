@@ -9,7 +9,9 @@
 
   h1 {
     @include adjust-font-size-to(53px);
-    color: rgb(186, 211, 0);
+    font-size: 1.6em;
+    /*color: rgb(186, 211, 0);*/
+    color: #3b3e45;
     font-family: 'Martel Sans', Arial, sans-serif;
     text-transform: uppercase;
     font-weight: bold;

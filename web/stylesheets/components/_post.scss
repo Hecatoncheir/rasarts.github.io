@@ -53,7 +53,8 @@ $sansserif: 'Martel Sans', Arial, sans-serif;
     font-weight: bold;
   }
   .title {
-    @include adjust-font-size-to(48px);
+    @include adjust-font-size-to(40px);
+    font-size: 1.6em;
     font-weight: bold;
     font-family: $sansserif;
     color: #bad300;
