@@ -26,8 +26,11 @@ $anim-time: 0.5s;
 @import "components/prism";
 @import "components/sidebar";
 @import "components/about";
+@import "components/code_page";
 
 /*#theSidebar {display:none}*/
+
+.clear {clear: both}
 
 .meta__avatar {
   width: 40px;

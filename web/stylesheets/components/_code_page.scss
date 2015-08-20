@@ -1,0 +1,29 @@
+.code-page {
+  @include adjust-font-size-to(18px);
+  font-family: $serif;
+
+  .code-block {
+    display: block;
+    float: left;
+    margin: 20px;
+    width: 35%;
+
+    header {
+      color: #bad300;
+      @include adjust-font-size-to(26px);
+      font-weight: bold;
+    }
+
+    .description {
+      margin-bottom: 10px;
+    }
+
+    a {
+      float: left;
+      clear: left;
+    }
+
+
+  }
+
+}
