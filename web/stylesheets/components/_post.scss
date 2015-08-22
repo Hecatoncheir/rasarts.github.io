@@ -94,6 +94,8 @@ $sansserif: 'Martel Sans', Arial, sans-serif;
   blockquote {
     max-width: 1200px;
     margin: auto;
+    border-left: 4px solid #bad300;
+    border-top: none 0;
   }
 
 }
