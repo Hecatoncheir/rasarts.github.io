@@ -104,3 +104,46 @@ main() {
 Функция **runZoned** это обёртка. По умолчанию, библиотека *async* неявно создаёт *root* зону и назначает её статической переменной **current** (read-only) в текущем классе **Zone**. Таким образом, у нас есть активная зона, которая всегда доступна нам в функции **runZoned**. Когда функция **runZoned** запускается, то она порождает новую зону вложенную в *root* и уже внутри этого контекста запускается функция *runServer*. Для создания новой вложенной зоны нужно использовать метод **fork** текущей зоны.
 
 >**Заметка:** Зона может быть создана только с помощью метода **fork** текущей зоны.
+<br><br>
+
+##Вложение зон
+Допустим мы хотим отдать статичный файл с нашего сервера. Что бы сделать это правильно, мы создадим новую вложенную зону и защитим наш код с помощью функции **runZoned**:
+
+```language-dart
+
+runServer() {
+  HttpServer
+  .bind(InternetAddress.ANY_IP_V4, 8080)
+  .then((server) {
+    server.listen((HttpRequest request) {
+      runZoned(() {
+        readFile(request.uri.path).then((String context){
+          request.response.write(context);
+          request.response.close();
+        });
+      }, onError:(e) {
+        request.response.statusCode = HttpStatus.NOT_FOUND;
+        request.response.write(e.toString());
+        request.response.close();
+      });
+    });
+  });
+}
+
+
+Future<String> readFile(String fileName) {
+  switch (fileName.trim()) {
+    case "/":
+    case "/index.html":
+    case "/favicon.ico":
+      return new Future.sync(() => "Hello, world!");
+  }
+  return new Future.sync(() => 
+      throw new Exception('Resource is not available'));
+}
+
+```
+
+Внутри вложенной зоны, мы вызываем функцию **readFile** и передаём в параметре имя ресурса, и уже эта функция возвращает содержание. Если доступа к ресурсу нет, функция *readFile* генерирует исключение, и программа ловит его в функции **onError**, которая зарегистрирована в качестве обработчика ошибок для зоны. Если обработчик ошибок не указан, исключение будет всплывать вверх по иерархии зон пока не обработается в какой-нибудь из родительских зон или не достигнет верхнего уровня и завершит программу.
+
+
