@@ -252,18 +252,17 @@ print:(Zone self, ZoneDelegate parent, Zone zone, String message)
 
 Первые три из них всегда одни и те же:
 
-  -	**self:** Этот аргумент представляет зону которая обрабатывает функцию обратного вызова.
+-	**self:** Этот аргумент представляет зону которая обрабатывает функцию обратного вызова.
 
-  -	**parent:** Этот аргумент предоставляет **ZoneDelegate** родительской зоны, и мы можем использовать это для связи с родителем зоны.
+-	**parent:** Этот аргумент предоставляет **ZoneDelegate** родительской зоны, и мы можем использовать это для связи с родителем зоны.
 
-  -	**zone:** Этот аргумент первым получает запрос (до того как он начнет всплытие по иерархии)
+-	**zone:** Этот аргумент первым получает запрос (до того как он начнет всплытие по иерархии)
 
 Четвертый аргумент зависит от функции. В нашем примере это *message*, которое будет напечатано.
 
 > **Заметка:** *ZoneSpecification* это единственный путь для переопределения специфичных для зон функций.
 
-##Взаимодействие зон
-Посмотрим как связь между родительской и вложенными зонами может быть полезна в рамках сервера:
+##Взаимодействие зон Посмотрим как связь между родительской и вложенными зонами может быть полезна в рамках сервера:
 
 ```language-dart
 
@@ -293,7 +292,7 @@ bool allowPrintContent = false;
 
 Мы добавили булеву переменную *allowPrintContent* для управления операцией *print*. Для печати контента страницы, когда обрабатывается Future значение readFile, мы вызываем функцию print внутри зоны. Мы вводим *allowPrintContent* как значение ключа *allow-print* для *zoneValues*, и на конец внутри переопределённой функции *print* мы добавляем условие которое печатает содержимое страницы только если *allow-print* является *true* значением.
 
-Мы запрашиваем *index.html* с помощью расширения Poostman и в качестве результата получаем:
+Мы запрашиваем *index.html* с помощью расширения Postman и в качестве результата получаем:
 
 ```language-bash
 Resource /index.html
@@ -307,3 +306,74 @@ Resource /index.html
 ```
 
 Взаимодействие между зонами может быть удобно организовано с помощью переменных зон (zone variables).
+
+##Отслеживание выполнения зон
+Сервер содержит две зоны. Первый используется для проверки аутентификации, второй используется для чтения статических файлов и отправки их обратно клиенту. Как узнать сколько времени требуется каждому статическому файлу для загрузки и обработки? Зоны поддерживают несколько методов для выполнения переданных им функций. Мы можем переопределить **run** метод в **ZoneSpecification** для расчёта времени затраченного функцией для обработки запроса. В нашем примере мы используем **Stopwatcher** как таймер. Мы обработаем каждый запрос и выведем время сразу после отправки ответа обратно клиенту, как показано в следующем коде:
+
+```language-dart
+
+//…
+runServer() {
+  HttpServer
+  .bind(InternetAddress.ANY_IP_V4, 8080)
+  .then((server) {
+    Set tokens = new Set.from(['1234567890']);
+    bool allowPrintContent = true;
+    Stopwatch timer = new Stopwatch();
+    server.listen((HttpRequest request) {
+      runZoned((){
+//…
+      });
+      runZoned(() {
+        readFile(request.uri.path).then((String context){
+          Zone.current.print(context);
+          request.response.write(context);
+          request.response.close();
+          Zone.current.print(
+              "Process time ${timer.elapsedMilliseconds} ms");
+        });
+      }, zoneValues: {'allow-print':allowPrintContent},
+      zoneSpecification: new ZoneSpecification(
+        print: (Zone self, ZoneDelegate parent, Zone zone, String message) {
+          if (zone['allow-print']) {
+            parent.print(zone, message);
+          }
+        },
+        run: (Zone self, ZoneDelegate parent, Zone zone, f) 
+          => run(parent, zone, f, timer)
+      ),
+      onError:(e) {
+        request.response.statusCode = HttpStatus.NOT_FOUND;
+        request.response.write(e.toString());
+        request.response.close();
+      });
+    });
+  });
+}
+
+```
+
+Теперь переопределим **run** функцию в **zoneSpecification:** для вызова глобальной функции **run** с **timer**:
+
+```language-dart
+
+run(ZoneDelegate parent, Zone zone, Function f, Stopwatch timer) {
+  try {
+    timer.start();
+    return parent.run(zone, f);
+  } finally {
+    timer.stop();
+  }
+}
+
+```
+
+В глобальной функции **run**, мы совершаем трюк когда вызываем оригинальную функцию из родительской зоны. Мы намеренно обернули функцию в **try/catch** блок для остановки таймера до того как в зону будет возвращён результат. Запросим какой-нибудь ресурс теперь:
+
+```language-dart
+Resource /index.html
+Hello, world!
+Process time 54 ms
+```
+
+Теперь у нас есть профилированная информация каждого запроса обрабатывающегося на сервере. В дополнение к стандартной функции **run**, зоны имеют **runUnary** и **runBinary** функции для передачи одного или дух дополнительных аргументов для выполнения их внутри зоны.
