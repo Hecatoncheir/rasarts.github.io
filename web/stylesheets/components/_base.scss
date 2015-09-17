@@ -703,7 +703,7 @@ button:focus {
 
 /* close button (for content and sidebar) */
 .close-button {
-	position: absolute;
+	position: fixed;
 	border: none;
 	background: none;
 	margin: 0;
