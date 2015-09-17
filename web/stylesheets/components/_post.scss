@@ -45,12 +45,19 @@ $sansserif: 'Martel Sans', Arial, sans-serif;
     margin: .5em auto;
     max-width: 1200px;
   }
+  .full-link {
+    text-align: center;
+    margin: auto;
+    display: block;
+  }
+
   h2 {
     max-width: 1200px;
     margin: auto;
     @include adjust-font-size-to(22px);
     color: #3b3e45;
     font-weight: bold;
+    display: inline-block;
   }
   .title {
     @include adjust-font-size-to(40px);
@@ -99,3 +106,16 @@ $sansserif: 'Martel Sans', Arial, sans-serif;
   }
 
 }
+
+.full-open-link {
+  font-size: 0.6em;
+  color: #cb4b47;
+
+  position: relative;
+  top: -10px;
+
+  &:hover {
+    color: #bad300;
+  }
+}
+
