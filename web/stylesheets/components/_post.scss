@@ -57,8 +57,12 @@ $sansserif: 'Martel Sans', Arial, sans-serif;
     @include adjust-font-size-to(22px);
     color: #3b3e45;
     font-weight: bold;
+    display: block;
+  }
+  .title--full {
     display: inline-block;
   }
+
   .title {
     @include adjust-font-size-to(40px);
     font-size: 1.6em;
@@ -113,6 +117,8 @@ $sansserif: 'Martel Sans', Arial, sans-serif;
 
   position: relative;
   top: -10px;
+
+  margin-right: -70px;
 
   &:hover {
     color: #bad300;
