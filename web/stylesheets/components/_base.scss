@@ -558,7 +558,7 @@ button:focus {
 	overflow: hidden;
 	height: 0;
 	opacity: 0;
-	padding: 60px 60px 80px 60px;
+	/*padding: 60px 60px 80px 60px;*/
 	pointer-events: none;
 	font-size: 0.85em;
 	p {
@@ -569,6 +569,10 @@ button:focus {
 	//p:first-of-type {
 	//	font-size: 1.35em;
 	//}
+}
+
+.content-padding {
+	padding: 60px 60px 80px 60px;
 }
 
 .content__item.content__item--show {
