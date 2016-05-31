@@ -9,32 +9,37 @@ labels:
   - Consul
   - VirtualBox
 -->
+
 Разработка микросервисов может оказаться не простой задачей.
 
 ### Примерная схема:
+
 ![alt text](http://s8.hostingkartinok.com/uploads/images/2016/05/dafb2c17b93fcab29ced9ae38982cab8.png)
 
 Базы данных для каждого микросервиса для начала будут расположены на ноде самого микросервиса.
 
-***Порядок такой***: Сперва на нодах подымается контейнер Consul. И он синхронизируется с кластером, получая информацию о микросервисах и о других серверах.  Сервисы вроде баз данных подымаются Docker'ом и регистрируются как сервисы в своих нодах в consul. Тот синхронизирует свои настройки с кластером. Затем микросервис на Dart подымается в контейнере docker и регистрируется как микросервис в consul своего нода. Микросервис dart при запуске подключается к consul своего нода и получает информацию о микросервисах необходимых ему для взаимодействия и о сервисе базы данных нужной ему. Таким образом у всех микросервисов свежие данные о местонахождении каждого из нужных ему сервисов для подключения.
+***Порядок такой***: Сперва на нодах подымается контейнер Consul. И он синхронизируется с кластером, получая информацию о микросервисах, их ip и портах.  Сервисы вроде баз данных подымаются Docker'ом и регистрируются как сервисы в своих нодах в consul. Тот синхронизирует свои настройки с кластером. Затем микросервис на Dart подымается в контейнере docker и регистрируется как микросервис в consul своего нода. Микросервис dart при запуске подключается к consul своего нода и получает информацию о микросервисах необходимых ему для взаимодействия. Таким образом у всех микросервисов свежие данные о местонахождении каждого из нужных ему сервисов для подключения.
 
-## Подготовка кластера, для серверов микросервисов.
+## Подготовка кластера.
 
-Взаимодействие между микросервисами нужно обеспечить. Каждый микросервис должен знать о расположении других, нужных ему серверов.
+Взаимодействие между микросервисами нужно обеспечить. Каждый микросервис должен знать о местонахождении остальных, нужных ему, микросервисов.
 
 Каждый микросервис будет регистрировать себя в кластере. И получать информацию о других от туда же.
 
-Устанавливаем VirtualBox, Docker и DockerMachine.
+Устанавливаем [**VirtualBox**](https://www.virtualbox.org/wiki/Downloads) , [**Docker**](https://docs.docker.com/engine/installation) и [**DockerMachine**](https://docs.docker.com/machine/install-machine).
 
-### Для начала настроим кластер.
 
-Настраиваем VirtualBox dhcp сервер для выдачи удобных Ip. (Мне так больше нравится).
+## Настройка
 
-```language-dart
+Настраиваем VirtualBox dhcp сервер для выдачи удобных Ip. (Мне так больше нравится. Так удобнее работать локально при разработке, запуская все контейнеры на одном компутере).
+
+```language-python
 VBoxManage dhcpserver add --netname vboxnet01 --ip 192.168.56.1 --netmask 255.255.255.0  --lowerip 192.168.60.100 --upperip 192.168.70.100 --enable
 ```
 
-Создаем простенькую docker машинку:
+Теперь VirtualBox dhcp сервер будет раздавать ip начиная с 192.168.61.100 - Cluster.
+
+Для того что бы было на чем запускать контейнер, с Consul для мониторинка и хранения информации о микросервисах, создаем простенькую docker машинку:
 
 ```language-dart
 docker-machine create --driver "virtualbox" --virtualbox-cpu-count "-1" --virtualbox-disk-size "2560" --virtualbox-memory "2560" --virtualbox-hostonly-cidr "192.168.61.1/24" Cluster
@@ -42,14 +47,24 @@ docker-machine create --driver "virtualbox" --virtualbox-cpu-count "-1" --virtua
 
 Подготавливаем необходимое для запуска окружение:
 
-```language-dart
+```language-bash
 
+# Запускает созданую docker машину
 docker-machine start Cluster
+
+# Если нужно генерируем сертификаты заново
 docker-machine env Cluster || docker-machine regenerate-certs -f Cluster
+
+# Необходимая информация о запущеной машине должна быть доступна в окружении
 eval $(docker-machine env Cluster)
+
+# Каждый раз когда запускается кластер, нужно удалять лишние контейнеры
+# даже если кластер был отключен, ведущие узел был переназначен автоматически
+# и вновь поднятый сервер получит настройки от остальных нодов в сети.
 docker rm -f $(docker ps -a -q)
 ```
 
+Далее нужно поднять Docker контейнер с Consul. Пока в примере настройки для удобной локальной разработки.
 Для запуска можно использовать .sh файл:
 
 ```language-dart
@@ -68,31 +83,36 @@ docker run -h Cluster \
     progrium/consul -ui-dir /ui -server  -advertise $cluster -bootstrap-expect 1
 ```
 
+Ключ -ui-dir задает uri путь к web интерфейсу.
+Который выглядит как здесь: [https://demo.consul.io/ui/](https://demo.consul.io/ui/)
+
 Кластер готов и ждет подключение нодов.
 
 ## Настройка нода для микросервиса
 
 ***node_config.json*** может выглядеть следующим образом:
 
-```language-dart
+```language-javascript
 {
-  "Datacenter": "dc1",
-  "Node": "Companies",
-  "Address": "192.168.62.100"
+  "Datacenter": "dc1", /* Датацентр в который мы определяем сервер */
+  "Node": "Cars",  /* Имя узла */
+  "Address": "192.168.62.100" /* Тут понятно */
 }
 ```
 
 И для запуска контейнера с Consul можно использовать удобный .sh файл:
 
 
-```language-dart
+```language-bash
 #!/bin/bash
 
 clear
 
-VBoxManage dhcpserver add --netname vboxnet01 --ip 192.168.56.1 --netmask 255.255.255.0  --lowerip 192.168.60.100 --upperip 192.168.70.100 --enable
+# На этот раз начинать раздовать ip dhtcp серверу лучше начинать с 192.168.62.100 - Cars
+VBoxManage dhcpserver add --netname vboxnet01 --ip 192.168.56.1 --netmask 255.255.255.0  --lowerip 192.168.61.100 --upperip 192.168.70.100 --enable
 
-docker-machine create --driver "virtualbox" --virtualbox-cpu-count "-1" --virtualbox-disk-size "12560" --virtualbox-memory "2560" --virtualbox-hostonly-cidr "192.168.62.1/24" Companies
+# Назовем эту docker машину  - Cars
+docker-machine create --driver "virtualbox" --virtualbox-cpu-count "-1" --virtualbox-disk-size "12560" --virtualbox-memory "2560" --virtualbox-hostonly-cidr "192.168.62.1/24" Cars
 
 docker-machine start Cars
 docker-machine env Cars || docker-machine regenerate-certs -f Cars
@@ -103,7 +123,7 @@ docker rm $(docker ps -a -q)
 cluster="192.168.61.100"
 server="192.168.62.100"
 
-#docker run -h Cars -v $PWD/mnt:/$PWDdata \
+#docker run -h Cars -v $PWD/mnt:/$PWDdata \ # - Таким образом можно указать где хранить информацию об узлах и их сервисах. Но в этом пока нет необходимости.
 
 docker run -h Cars \
     -p $server:8300:8300 \
@@ -117,28 +137,32 @@ docker run -h Cars \
     progrium/consul -server -advertise $server -join $cluster
 ```
 
-Пока это все находится на одном сервере для удобной разработки. Но при необходимост, не большие правки позволят разделить все микросервисы на отдельные сервера.
+Ключ -join сразу подключает контейнер и регистрирует его в кластере.
 
-Дальше запускается база данных и регистрируется как сервис в своем ноде. На примере RethinkDb.
+Пока это все находится на одном сервере для удобной разработки. Но при необходимост, не большие правки позволят разделить все docker контейнеры на отдельные сервера.
+
+Дальше запускается база данных и регистрируется как сервис в своем ноде (Cars). На примере RethinkDb.
 
 ***service.json*** с информацией для подключения к нему:
 
-```language-dart
+```language-javascript
 {
-  "ID": "CarsDatabase",
-  "Name": "CarsDatabase",
-  "Tags": [
-    "master",
-    "v1"
+  "ID": "CarsDatabase", /* Уникальное название - идетификатор сервиса */
+  "Name": "CarsDatabase", /* Имя сервиса, никогда не будет лишним */
+  "Tags": [ /* Теги, могут быть полезными, но не обязательные */
+    "master", /* Обычно это имя ветки откуда сделать пул для нового разворачивания в другой системе, если потребуется */
+    "v1" /* И версия api */
   ],
   "Address": "192.168.62.100",
   "Port": 8000,
-  "Check": {
+  "Check": { /* Позволяет настроить проверку, ее интервал и много полезного для проверки состояния сервиса */
     "Interval": "10s",
     "TTL": "15s"
   }
 }
 ```
+
+О том как настраиваются условия проверки сервисов: [https://www.consul.io/docs/agent/checks.html](https://www.consul.io/docs/agent/checks.html)
 
 Запускаем Docker контейнер и регистрируем сервис:
 
@@ -148,10 +172,13 @@ docker-machine start Cars
 docker-machine env Cars
 eval $(docker-machine env Cars)
 
+# Регистрируется в Consul своего нода (Cars)
 curl -X PUT -d @service.json http://192.168.62.100:8500/v1/agent/service/register
 
 docker run --name CarsDatabase -v "$PWD:/data" -p 8000:8080 -p 28015:28015 rethinkdb || docker start -ia CarsDatabase
 ```
+
+Ключ -v "$PWD:/data" указывает где хранить нужные для RethinkDb файлы.
 
 ## Запускаем Dart микросервис:
 ***service.json***:
@@ -184,9 +211,9 @@ ENTRYPOINT ["/usr/bin/dart", "bin/microservice.dart"]
 EXPOSE 8801/tcp
 ```
 
-Запуская контейнер на Dart единожды Docker соберет контейнер с нужными пакетами pub. До того момента как понадобится пересоздать контейнер pub запускать снова нужно не будет, что удобно для разработки.
+Запуская контейнер на Dart единожды Docker соберет контейнер с нужными пакетами pub. До того момента как понадобится пересоздать контейнер pub запускать снова нужно не будет, что удобно для разработки. Только нужно помнить что контейнеры при создании нода удаляются. Это уже действия по обстоятельствам.
 
-Ну а для запуска и регистрации микровсервиса в ноде можно использовать .sh:
+Ну а для запуска и регистрации микровсервиса в ноде можно, снова, использовать .sh:
 
 ```language-dart
 #!/usr/bin/env bash
@@ -207,7 +234,7 @@ docker run --net=host -i -t --name CarsMicroservice someUserFromDockerHub/someIm
 
 Таким же образом настраивается и DriversNode.
 
-Получать инфу для подключения к микросервисам можно с помощью consul restApi:
+Получать инфу для подключения к микросервисам можно с помощью consul [RestApi](https://www.consul.io/docs/agent/http.html):
 
 ```language-dart
 /// Name of microservice of database
