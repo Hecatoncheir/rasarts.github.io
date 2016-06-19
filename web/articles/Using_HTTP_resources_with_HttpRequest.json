@@ -5,6 +5,9 @@
   "category": "Примеры кода Dart",
   "icon": "dart_tutorial",
   "next_post": "#",
-  "prev_post" : "HTTP_clients_and_servers",
-  "tags": ["Dart","HTTP"]
+  "prev_post": "HTTP_clients_and_servers",
+  "tags": [
+    "Dart",
+    "HTTP"
+  ]
 }
