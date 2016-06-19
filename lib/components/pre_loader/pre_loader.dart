@@ -17,11 +17,13 @@ external preLoaderClose();
 
 @PolymerRegister('pre-loader')
 class PreLoader extends PolymerElement {
-  PreLoader.created() : super.created() {
-    preLoaderInit();
-  }
+  PreLoader.created() : super.created();
 
   ready(){
+    document.addEventListener('Page loading', (CustomEvent e) {
+      preLoaderInit();
+    });
+
     document.addEventListener('Page ready', (CustomEvent e) {
       preLoaderClose();
     });

@@ -6,6 +6,8 @@ dependencies:
     version: '1.0.0-rc.17'
     git: https://github.com/dart-lang/polymer-dart.git
   js: '^0.6.0'
+  markdown: '0.10.1'
+  route: '0.4.6'
 transformers:
   - polymer:
       entry_points:
