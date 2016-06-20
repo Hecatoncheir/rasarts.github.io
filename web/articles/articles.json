@@ -1,4 +1,7 @@
 {
   "Using_HTTP_resources_with_HttpRequest": "Примеры_кода_Dart",
-  "HTTP_clients_and_servers": "Примеры_кода_Dart"
+  "HTTP_clients_and_servers": "Примеры_кода_Dart",
+  "Sending_and_receiving_real_time_data_with_WebSockets": "Примеры_кода_Dart",
+  "Files_and_directories": "Примеры_кода_Dart",
+  "The_Dart_Vm_execution_model" : "Изучение_Dart"
 }
