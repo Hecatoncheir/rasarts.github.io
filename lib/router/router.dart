@@ -21,7 +21,7 @@ Event loadingPageEvent;
 Event readyPageEvent;
 
 InkTransition articleFullContentBlock;
-List articles;
+Map articles;
 
 class NullTreeSanitizer implements NodeTreeSanitizer {
   void sanitizeTree(node) {}
@@ -60,46 +60,65 @@ showHome(String path) async {
         await HttpRequest.getString('/articles/articles.json');
     articles = JSON.decode(articlesJSON);
 
-    for (int articleId = 0; articleId < articles.length; articleId++) {
+    print(articles);
+    print(articles.values.length);
+
+    for (int articleId = 0; articleId < articles.values.length; articleId++) {
+      String category = articles.values.toList()[articleId];
+      String article = articles.keys.toList()[articleId];
+
       String articleDetailsJSON =
-          await HttpRequest.getString('/articles/${articles[articleId]}.json');
+          await HttpRequest.getString('/articles/$category/$article.json');
+
       Map articleDetails = JSON.decode(articleDetailsJSON);
       print(articleDetails);
 
-      if (articleId < 5){
-        pageHome.appendHtml('''
+      if (articleId < 5) {
+        pageHome.appendHtml(
+            '''
          <header class="bp-header cf style-scope stack-pages">
 
-            <a href="/#article/${articles[articleId]}">
+            <a href="/#article/$article">
                 <ink-button class="ink-btn style-scope stack-pages">Открыть</ink-button>
             </a>
 
-            <span class="bp-header__present style-scope stack-pages">Blueprint</span>
-            <a class="style-scope stack-pages" href="/#article/${articles[articleId]}">
+            <span class="bp-header__present style-scope stack-pages">${articleDetails['tags']}</span>
+            <a class="style-scope stack-pages" href="/#article/${article}">
               <h1 class="bp-header__title style-scope stack-pages">${articleDetails['title']}</h1>
             </a>
-            <p class="bp-header__desc style-scope stack-pages">Based on Ilya Kostin's Dribbble shot
-                <a class="style-scope stack-pages"
-                   href="https://dribbble.com/shots/2286042-Stacked-navigation">Stacked navigation</a>
-            </p>
+            <p class="bp-header__desc style-scope stack-pages">${articleDetails['category']}</p>
 
         </header>
-        ''', treeSanitizer: new NullTreeSanitizer());
+        ''',
+            treeSanitizer: new NullTreeSanitizer());
       }
-
     }
   }
 
   document.dispatchEvent(readyPageEvent);
 }
 
+/// Show some article
 showArticle(String path) async {
   await document.dispatchEvent(loadingPageEvent);
 
   String articleName = articleUrl.parse(path)[0];
+  String category;
+
+  if (articles == null || articles.isEmpty) {
+    String articlesJSON =
+        await HttpRequest.getString('/articles/articles.json');
+    articles = JSON.decode(articlesJSON);
+  }
+
+  articles.forEach((String articleLink, String categoryName) {
+    if (articleLink == articleName) {
+      category = categoryName;
+    }
+  });
 
   String detailsJSON = await HttpRequest
-      .getString('articles/$articleName.json')
+      .getString('articles/$category/$articleName.json')
       .catchError((error) {
     print(error);
     document.dispatchEvent(readyPageEvent);
@@ -109,7 +128,7 @@ showArticle(String path) async {
   Map details = JSON.decode(detailsJSON);
 
   String fullDetailsMD = await HttpRequest
-      .getString('articles/$articleName.md')
+      .getString('articles/$category/$articleName.md')
       .catchError((error) {
     print(error);
     document.dispatchEvent(readyPageEvent);

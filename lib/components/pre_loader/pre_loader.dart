@@ -19,7 +19,7 @@ external preLoaderClose();
 class PreLoader extends PolymerElement {
   PreLoader.created() : super.created();
 
-  ready(){
+  ready() {
     document.addEventListener('Page loading', (CustomEvent e) {
       preLoaderInit();
     });
@@ -28,5 +28,4 @@ class PreLoader extends PolymerElement {
       preLoaderClose();
     });
   }
-
 }

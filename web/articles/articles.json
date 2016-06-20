@@ -1,4 +1,4 @@
-[
-  "Using_HTTP_resources_with_HttpRequest",
-  "HTTP_clients_and_servers"
-]
+{
+  "Using_HTTP_resources_with_HttpRequest": "Примеры_кода_Dart",
+  "HTTP_clients_and_servers": "Примеры_кода_Dart"
+}

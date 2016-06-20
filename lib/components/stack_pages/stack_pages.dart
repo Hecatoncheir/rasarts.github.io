@@ -18,10 +18,10 @@ import 'package:blog/components/ink_button/ink_button.dart';
 class StackPages extends PolymerElement {
   StackPages.created() : super.created();
 
-  attached(){
-//    Event readyPageEvent = new CustomEvent('Page ready');
-//    new Timer(new Duration(seconds: 2),(){
-//      document.dispatchEvent(readyPageEvent);
-//    });
+  attached() {
+    //  Event readyPageEvent = new CustomEvent('Page ready');
+    //  new Timer(new Duration(seconds: 2),(){
+    //    document.dispatchEvent(readyPageEvent);
+    //  });
   }
 }
