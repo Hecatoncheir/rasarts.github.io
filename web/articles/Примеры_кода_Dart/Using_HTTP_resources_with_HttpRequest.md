@@ -7,7 +7,7 @@
 
 Статичный метод `getString()` объекта `HttpRequest` это самый простой способ получить данные с сервера. Используя метод `then()` после `getString()` можно указать функцию которая получит данные для обработки.
 
-```language-dart
+```dart
 import 'dart:html';
 import 'dart:async';
 
@@ -28,7 +28,7 @@ processString(String jsonText) {
 
 Метод `catchError()` добавленный после вызова `then()` позволяет назначать обработчик ошибок:
 
-```language-dart
+```dart
 ...
 HttpRequest.getString(uri)
     .then(processString)
@@ -42,7 +42,7 @@ handleError(error) {
 
 Если Вам нужен доступ к `HttpRequest`, а не только к полученным данным в виде строки Вы можете использовать статичный метод `request()` вместо `getString()`. Вот пример чтения XML данных:
 
-```language-dart
+```dart
 import 'dart:html';
 import 'dart:async';
 
@@ -79,7 +79,7 @@ processRequest(HttpRequest request) {
 
 Например:
 
-```language-dart
+```dart
 import 'dart:html';
 ...
 var httpRequest = new HttpRequest()
@@ -95,7 +95,7 @@ var httpRequest = new HttpRequest()
 
 Для передачи данных обработчику формы требуется предоставить пары имя-значение в формате URI строки. (Информация о классе URI находится в ["URI"](http://rudart.in/up-and-running/152/) разделе). Также, для отправки форм, Вы должны установить заголовок `Content-Type` в `application/x-www-form-urlencode`.
 
-```language-dart
+```dart
 import 'dart:html';
 
 String encodeMap(Map data) {

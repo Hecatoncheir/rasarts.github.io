@@ -6,11 +6,12 @@ library ink_transition;
 import 'dart:html';
 
 import 'package:js/js.dart';
-import 'package:markdown/markdown.dart' as md;
 
 /// Polymer
 import 'package:polymer/polymer.dart';
 import 'package:web_components/html_import_annotation.dart' show HtmlImport;
+
+import 'package:polymer_elements/marked_element.dart';
 
 @JS('open')
 external _open();
@@ -18,13 +19,15 @@ external _open();
 @JS('close')
 external _close();
 
+@JS('Prism.highlightAll')
+external _highlightCode();
+
 class NullTreeSanitizer implements NodeTreeSanitizer {
   void sanitizeTree(node) {}
 }
 
 @PolymerRegister('ink-transition')
 class InkTransition extends PolymerElement {
-
   open() => _open();
   close() => _close();
 
@@ -39,23 +42,24 @@ class InkTransition extends PolymerElement {
 
   InkTransition.created() : super.created();
 
-  attached(){
-    querySelector('.modal-close').onClick.listen((event){
+  attached() {
+    querySelector('.modal-close').onClick.listen((event) {
       document.dispatchEvent(new CustomEvent('Main page must be open'));
     });
   }
 
   @reflectable
   void fullDetailsChanged(event, [_]) {
-    Element fullDetailsBlock = querySelector('#fullDetails');
+    MarkedElement fullDetailsBlock = querySelector('marked-element');
 
     if (event == '') {
-      fullDetailsBlock.innerHtml = '';
+      fullDetailsBlock.markdown = '';
       return;
     }
 
-    fullDetailsBlock.setInnerHtml(md.markdownToHtml(event),
-        treeSanitizer: new NullTreeSanitizer());
+    fullDetailsBlock.markdown = event;
+
+    _highlightCode();
   }
 
   @reflectable

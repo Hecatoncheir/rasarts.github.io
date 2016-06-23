@@ -2432,8 +2432,14 @@
         <div class="cd-modal">
             <div class="modal-content">
                 <h1>{{header}}</h1>
-                <section id="fullDetails"></section>
-                <content></content>
+
+                <marked-element smartypants>
+                    <div class="markdown-html"></div>
+                    <script type="text/markdown">
+                         <content></content>
+                    </script>
+                </marked-element>
+
             </div> <!-- .modal-content -->
 
             <span class="modal-close">Close</span>
@@ -2442,6 +2448,9 @@
         <div class="cd-transition-layer">
             <div class="bg-layer"></div>
         </div> <!-- .cd-transition-layer -->
+
+        <link href="stylesheets/prism.css" rel="stylesheet"/>
+        <script src="javascript/prism.js"></script>
 
         <script>
 

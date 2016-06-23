@@ -2,7 +2,7 @@ WebSocket позволяет приложениям обмениваться д�
 
 Чтобы использовать WebSocket в приложении, нужно создать объект [WebSocket](http://api.dartlang.org/html/WebSocket.html), передав ему первым параметром URL:
 
-```language-dart
+```dart
 var ws = new WebSocket('ws://echo.websocket.org');
 ```
 
@@ -11,7 +11,7 @@ var ws = new WebSocket('ws://echo.websocket.org');
 
 Для отправки данных по WebSocket используется метод `send()`:
 
-```language-dart
+```dart
 ws.send('Hello from Dart!');
 ```
 
@@ -20,7 +20,7 @@ ws.send('Hello from Dart!');
 
 Для получения данных по WebSocket задается прослушка события `message`:
 
-```language-dart
+```dart
 ws.onMessage.listen((MessageEvent e) {
   print('Полученное сообщение: ${e.data}');
 });
@@ -33,7 +33,7 @@ ws.onMessage.listen((MessageEvent e) {
 
 Ваше приложение может прослушивать следующие события WebSocket: `open`, `close`, `error` и (как показано выше) `message`. Ниже показан пример метода который создает объекта WebSocket и добавляет к нему обработчики событий `open`, `close`, `error`, и `message`.
 
-```language-dart
+```dart
 void initWebSocket([int retrySeconds = 2]) {
   var reconnectScheduled = false;
 
