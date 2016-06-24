@@ -67,7 +67,12 @@ prepareAllPages() async {
   pageTagHTTP = querySelector('#page-tag-HTTP');
 
   String articlesJSON = await HttpRequest.getString('/articles/articles.json');
-  articles = JSON.decode(articlesJSON);
+  Map originalArticles = JSON.decode(articlesJSON);
+  articles = new Map();
+
+  originalArticles.keys.toList().reversed.forEach((String articleName){
+    articles[articleName] = originalArticles[articleName];
+  });
 
   for (int articleId = 0; articleId < articles.values.length; articleId++) {
     String category = articles.values.toList()[articleId];
