@@ -4,6 +4,7 @@
   "Sending_and_receiving_real_time_data_with_WebSockets": "Examples_Dart_code",
   "Files_and_directories": "Examples_Dart_code",
   "The_Dart_Vm_execution_model" : "Learning_Dart",
-  "Installing_dart_in_c9" : "Guide_to_action"
-
+  "Installing_dart_in_c9" : "Guide_to_action",
+  "Reflection" : "Learning_Dart",
+  "Guard_and_livereload" : "Guide_to_action"
 }
