@@ -3,5 +3,7 @@
   "HTTP_clients_and_servers": "Примеры_кода_Dart",
   "Sending_and_receiving_real_time_data_with_WebSockets": "Примеры_кода_Dart",
   "Files_and_directories": "Примеры_кода_Dart",
-  "The_Dart_Vm_execution_model" : "Изучение_Dart"
+  "The_Dart_Vm_execution_model" : "Изучение_Dart",
+  "Installing_dart_in_c9" : "Руководство_к_действию"
+
 }
