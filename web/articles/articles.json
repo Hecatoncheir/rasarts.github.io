@@ -3,8 +3,13 @@
   "HTTP_clients_and_servers": "Examples_Dart_code",
   "Sending_and_receiving_real_time_data_with_WebSockets": "Examples_Dart_code",
   "Files_and_directories": "Examples_Dart_code",
-  "The_Dart_Vm_execution_model" : "Learning_Dart",
-  "Installing_dart_in_c9" : "Guide_to_action",
-  "Reflection" : "Learning_Dart",
-  "Guard_and_LiveReload" : "Guide_to_action"
+  "The_Dart_Vm_execution_model": "Learning_Dart",
+  "Installing_dart_in_c9": "Guide_to_action",
+  "Reflection": "Learning_Dart",
+  "Guard_and_LiveReload": "Guide_to_action",
+  "Grinder_format": "Guide_to_action",
+  "Asynchronous_programming": "Learning_Dart",
+  "Mixins": "Examples_Dart_code",
+  "Zones": "Learning_Dart",
+  "Clustering_docker_containers_via_consul_for_microservices_dart": "Guide_to_action"
 }

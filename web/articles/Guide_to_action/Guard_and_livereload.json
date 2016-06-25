@@ -4,7 +4,7 @@
   "id": "7",
   "category": "Руководство к действию",
   "icon": "tutorial",
-  "next_post": "#",
+  "next_post": "Grinder_format",
   "prev_post": "Reflection",
   "tags": [
     "Ruby",
