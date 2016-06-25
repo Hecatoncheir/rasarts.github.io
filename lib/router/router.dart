@@ -14,6 +14,7 @@ import 'package:polymer/polymer.dart';
 final homeUrl = new UrlPattern(r'/');
 final mainPage = new UrlPattern(r'/#');
 final aboutUrl = new UrlPattern(r'/#about');
+final codeUrl = new UrlPattern(r'/#code');
 final articleUrl = new UrlPattern(r'/#article/(\w+)');
 final tagUrl = new UrlPattern(r'/#tag/(\w+)');
 final categoryUrl = new UrlPattern(r'/#category/(\w+)');
@@ -45,6 +46,7 @@ prepareRouter() async {
 
   router
     ..addHandler(aboutUrl, showAboutMePage)
+    ..addHandler(codeUrl, showMyCodePage)
     ..addHandler(homeUrl, showHome)
     ..addHandler(mainPage, showHome)
     ..addHandler(articleUrl, showArticle)
@@ -72,7 +74,7 @@ prepareAllPages() async {
   Map originalArticles = JSON.decode(articlesJSON);
   articles = new Map();
 
-  originalArticles.keys.toList().reversed.forEach((String articleName){
+  originalArticles.keys.toList().reversed.forEach((String articleName) {
     articles[articleName] = originalArticles[articleName];
   });
 
@@ -101,9 +103,7 @@ prepareAllPages() async {
         </header>
         ''';
 
-    if (articleId < 5) {
-      pageHome.appendHtml(template, treeSanitizer: new NullTreeSanitizer());
-    }
+    pageHome.appendHtml(template, treeSanitizer: new NullTreeSanitizer());
 
     if (articleDetails['category'] == 'Примеры кода Dart') {
       await pageExamplesCode.appendHtml(template,
@@ -231,6 +231,18 @@ showAboutMePage(String path) async {
 
   articleFullContentBlock.set('header', 'Востриков Виталий');
   articleFullContentBlock.set('fullDetails', aboutMeMD);
+  articleFullContentBlock.open();
+
+  document.dispatchEvent(readyPageEvent);
+}
+
+showMyCodePage(String path) async {
+  await document.dispatchEvent(loadingPageEvent);
+
+  String codeMD = await HttpRequest.getString('/articles/$path.md');
+
+  articleFullContentBlock.set('header', 'Примеры и пакеты');
+  articleFullContentBlock.set('fullDetails', codeMD);
   articleFullContentBlock.open();
 
   document.dispatchEvent(readyPageEvent);
