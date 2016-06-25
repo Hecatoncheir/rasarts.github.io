@@ -13,6 +13,7 @@ import 'package:polymer/polymer.dart';
 
 final homeUrl = new UrlPattern(r'/');
 final mainPage = new UrlPattern(r'/#');
+final aboutUrl = new UrlPattern(r'/#about');
 final articleUrl = new UrlPattern(r'/#article/(\w+)');
 final tagUrl = new UrlPattern(r'/#tag/(\w+)');
 final categoryUrl = new UrlPattern(r'/#category/(\w+)');
@@ -43,6 +44,7 @@ prepareRouter() async {
   });
 
   router
+    ..addHandler(aboutUrl, showAboutMePage)
     ..addHandler(homeUrl, showHome)
     ..addHandler(mainPage, showHome)
     ..addHandler(articleUrl, showArticle)
@@ -141,7 +143,7 @@ showHome(String path) async {
       articleDetails.isEmpty ||
       articles == null ||
       articles.isEmpty) {
-    prepareAllPages();
+    await prepareAllPages();
   }
 
   document.dispatchEvent(readyPageEvent);
@@ -218,6 +220,18 @@ showCategoryPage(String path) async {
   if (categoryName == 'learning_Dart') {
     querySelector('[href="#${pageLearningDart.id}"').click();
   }
+
+  document.dispatchEvent(readyPageEvent);
+}
+
+showAboutMePage(String path) async {
+  await document.dispatchEvent(loadingPageEvent);
+
+  String aboutMeMD = await HttpRequest.getString('/articles/$path.md');
+
+  articleFullContentBlock.set('header', 'Востриков Виталий');
+  articleFullContentBlock.set('fullDetails', aboutMeMD);
+  articleFullContentBlock.open();
 
   document.dispatchEvent(readyPageEvent);
 }

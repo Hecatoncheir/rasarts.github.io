@@ -24,6 +24,7 @@
                 -moz-transition: box-shadow 0.3s;
                 transition: box-shadow 0.3s;
             }
+
             .no-touch .cd-btn:hover {
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             }
@@ -40,6 +41,7 @@
                 font-family: "IM Fell Double Pica", serif;
                 font-style: italic;
             }
+
             @media only screen and (min-width: 768px) {
                 h1 {
                     font-size: 3rem;
@@ -60,6 +62,7 @@
                 display: table;
                 background-color: #fff;
             }
+
             .cd-main-content .center {
                 /* vertically align inside parent element */
                 display: table-cell;
@@ -88,6 +91,7 @@
                 -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
                 transition: opacity 0.3s 0s, visibility 0s 0.3s;
             }
+
             .cd-modal .modal-content {
                 height: 100%;
                 overflow-y: auto;
@@ -96,6 +100,7 @@
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
             }
+
             .cd-modal h1 {
                 text-align: center;
             }
@@ -135,8 +140,9 @@
             }
 
             .cd-modal p a {
-                color: #000;
-                background-color: #fff;
+                color: #40c5fd;
+                /*color: #000;*/
+                /*background-color: #fff;*/
                 text-decoration: none;
                 padding: 2px 4px;
                 border-radius: 3px;
@@ -151,10 +157,47 @@
 
             .cd-modal blockquote {
                 padding: 10px;
-                border-radius: 6px;
+                border-radius: 3px;
                 color: #fff;
                 background: #313131;
                 border-left: 3px solid #cddf3c;
+            }
+
+            .column {
+                padding: 20px 0;
+                -webkit-column-break-inside: avoid;
+                -moz-column-break-inside: avoid;
+                -ms-column-break-inside: avoid;
+                -o-column-break-inside: avoid;
+                column-break-inside: avoid;
+                -webkit-column-count: 3;
+                -moz-column-count: 3;
+                column-count: 3;
+                column-gap: 20px;
+            }
+
+            @media (min-width: 300px) {
+                .column {
+                    -webkit-column-count: 1;
+                    -moz-column-count: 1;
+                    column-count: 1;
+                }
+            }
+
+            @media (min-width: 600px) {
+                .column {
+                    -webkit-column-count: 2;
+                    -moz-column-count: 2;
+                    column-count: 2;
+                }
+            }
+
+            @media (min-width: 800px) {
+                .column {
+                    -webkit-column-count: 3;
+                    -moz-column-count: 3;
+                    column-count: 3;
+                }
             }
 
             .cd-modal .modal-close {
@@ -182,9 +225,11 @@
                 -moz-transition: -moz-transform 0.3s 0s, visibility 0s 0.3s, opacity 0.3s 0s;
                 transition: transform 0.3s 0s, visibility 0s 0.3s, opacity 0.3s 0s;
             }
+
             .no-touch .cd-modal .modal-close:hover {
                 background-color: rgba(0, 0, 0, 0.5);
             }
+
             .cd-modal.visible {
                 opacity: 1;
                 visibility: visible;
@@ -192,10 +237,12 @@
                 -moz-transition: opacity 0.7s, visibility 0s;
                 transition: opacity 0.7s, visibility 0s;
             }
+
             .cd-modal.visible .modal-content {
                 /* this fixes the buggy scrolling on webkit browsers - mobile devices only - when overflow property is applied */
                 -webkit-overflow-scrolling: touch;
             }
+
             .cd-modal.visible .modal-close {
                 visibility: visible;
                 opacity: 1;
@@ -208,16 +255,25 @@
                 -o-transform: scale(1);
                 transform: scale(1);
             }
+
             @media only screen and (min-width: 1100px) {
                 .cd-modal .modal-content {
                     padding: 6em 5%;
                 }
+
                 .cd-modal .modal-close {
                     height: 60px;
                     width: 60px;
                 }
+
                 .cd-modal p {
                     font-size: 1.6rem;
+                }
+
+                .column {
+                    -webkit-column-count: 2;
+                    -moz-column-count: 2;
+                    column-count: 2;
                 }
             }
 
@@ -237,6 +293,7 @@
                 visibility: hidden;
                 overflow: hidden;
             }
+
             .cd-transition-layer .bg-layer {
                 position: absolute;
                 left: 50%;
@@ -253,10 +310,12 @@
                 background: url(images/ink.png) no-repeat 0 0;
                 background-size: 100% 100%;
             }
+
             .cd-transition-layer.visible {
                 opacity: 1;
                 visibility: visible;
             }
+
             .cd-transition-layer.opening .bg-layer {
                 -webkit-animation: cd-sequence 0.8s steps(24);
                 -moz-animation: cd-sequence 0.8s steps(24);
@@ -265,6 +324,7 @@
                 -moz-animation-fill-mode: forwards;
                 animation-fill-mode: forwards;
             }
+
             .cd-transition-layer.closing .bg-layer {
                 -webkit-animation: cd-sequence-reverse 0.8s steps(24);
                 -moz-animation: cd-sequence-reverse 0.8s steps(24);
@@ -273,6 +333,7 @@
                 -moz-animation-fill-mode: forwards;
                 animation-fill-mode: forwards;
             }
+
             .no-cssanimations .cd-transition-layer {
                 display: none;
             }
@@ -287,6 +348,7 @@
                     -webkit-transform: translateY(-50%) translateX(-98%);
                 }
             }
+
             @-moz-keyframes cd-sequence {
                 0% {
                     /* translateX(-2%) is used to horizontally center the first frame inside the viewport */
@@ -297,6 +359,7 @@
                     -moz-transform: translateY(-50%) translateX(-98%);
                 }
             }
+
             @keyframes cd-sequence {
                 0% {
                     /* translateX(-2%) is used to horizontally center the first frame inside the viewport */
@@ -315,6 +378,7 @@
                     transform: translateY(-50%) translateX(-98%);
                 }
             }
+
             @-webkit-keyframes cd-sequence-reverse {
                 0% {
                     -webkit-transform: translateY(-50%) translateX(-98%);
@@ -323,6 +387,7 @@
                     -webkit-transform: translateY(-50%) translateX(-2%);
                 }
             }
+
             @-moz-keyframes cd-sequence-reverse {
                 0% {
                     -moz-transform: translateY(-50%) translateX(-98%);
@@ -331,6 +396,7 @@
                     -moz-transform: translateY(-50%) translateX(-2%);
                 }
             }
+
             @keyframes cd-sequence-reverse {
                 0% {
                     -webkit-transform: translateY(-50%) translateX(-98%);
