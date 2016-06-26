@@ -220,6 +220,7 @@
                 white-space: nowrap;
                 visibility: hidden;
                 opacity: 0;
+                cursor: pointer;
                 -webkit-transform: scale(0);
                 -moz-transform: scale(0);
                 -ms-transform: scale(0);
@@ -228,6 +229,11 @@
                 -webkit-transition: -webkit-transform 0.3s 0s, visibility 0s 0.3s, opacity 0.3s 0s;
                 -moz-transition: -moz-transform 0.3s 0s, visibility 0s 0.3s, opacity 0.3s 0s;
                 transition: transform 0.3s 0s, visibility 0s 0.3s, opacity 0.3s 0s;
+            }
+
+            .cd-modal .modal-close:hover {
+                background-color: #40c5fd;
+                transform: scale(1.5) rotate(45deg) !important;
             }
 
             .no-touch .cd-modal .modal-close:hover {
