@@ -65,7 +65,13 @@
 
 
                 <!-- Компонент с анимированными точками -->
-                <tree-dots></tree-dots>
+                <iron-media-query query="(max-width: 40em)"
+                                  query-matches="{{mobileWidth}}"></iron-media-query>
+
+                <template is="dom-if"
+                          if="{{!mobileWidth}}">
+                    <tree-dots></tree-dots>
+                </template>
 
             </nav>
             <!-- /navigation-->
