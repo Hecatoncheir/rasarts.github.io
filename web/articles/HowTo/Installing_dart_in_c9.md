@@ -2,7 +2,7 @@
 
 Нужно иметь возможность запускать проекты написанные на Dart, а так же прогонять backend и клиентские тесты.
 
-Для решения этой задачи понадобится скачать архив с dart-sdk для Linux дистрибутива сам Dartium и Content-shell. Т.к. нужно запускать и клиентские тесты тоже, для этого пригодится xvfb которая позволит запускать Dartium и выводить содержание его консоли прямо в терминал.
+Для решения этой задачи понадобится скачать архив с [DartSDK](http://gsdview.appspot.com/dart-archive/channels/stable/release/1.17.1/sdk/) для Linux дистрибутива сам [Dartium](http://gsdview.appspot.com/dart-archive/channels/stable/release/1.17.1/dartium/) и [ContentShell](http://gsdview.appspot.com/dart-archive/channels/stable/release/1.17.1/dartium/) . Т.к. нужно запускать и клиентские тесты тоже, для этого пригодится xvfb которая позволит запускать Dartium и выводить содержание его консоли прямо в терминал.
 
 ## Установка необходимых пакетов
 
@@ -11,13 +11,13 @@
 
 ### Ключ и репозиторий для установки Chrome:
 ```bash
-curl -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - &&
+curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - &&
 sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 ```
 
 ### Установка пакетов:
 ```bash
-apt-get -y -f install git xvfb  unzip apt-transport-https google-chrome-stable --allow-unauthenticated && apt-get clean && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* /download/directory
+apt-get update && apt-get install -y -f git xvfb unzip apt-transport-https google-chrome-stable --allow-unauthenticated && apt-get clean && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* /download/directory
 ```
 
 ## Установка Dartium
