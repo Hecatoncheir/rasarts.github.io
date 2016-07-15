@@ -40,8 +40,8 @@ cd ~ && wget https://storage.googleapis.com/dart-archive/channels/stable/release
 ```bash
 cd ~ && echo '
 export PATH=${PATH}:"~/dart-sdk/bin"
+export PATH=${PATH}:"~/.pub-cache/bin"
 export PATH=${PATH}:"~/content_shell"
-export PATH=${PATH}:"~/.pub-cache"
 export PATH=${PATH}:"~/dartium"' >> .bashrc
 source .bashrc
 ```
