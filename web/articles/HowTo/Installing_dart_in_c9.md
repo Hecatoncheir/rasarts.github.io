@@ -11,40 +11,36 @@
 
 ### Ключ и репозиторий для установки Chrome:
 ```bash
-curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - &&
-sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 ```
 
 ### Установка пакетов:
 ```bash
-apt-get update && apt-get install -y -f git xvfb unzip apt-transport-https google-chrome-stable --allow-unauthenticated && apt-get clean && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* /download/directory
+sudo apt-get -y update && sudo apt-get -y -f install git xvfb  unzip apt-transport-https google-chrome-stable --allow-unauthenticated && sudo  ln -s /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
 ```
 
 ## Установка Dartium
 ```bash
-cd ~
-curl http://gsdview.appspot.com/dart-archive/channels/stable/release/1.17.1/dartium/dartium-linux-x64-release.zip && unzip dartium-linux-x64-release.zip && rm dartium-linux-x64-release.zip && mv dartium-lucid64-full-stable-1.17.1.0 dartium && mv dartium/chrome dartium/dartium
+cd ~ && wget http://gsdview.appspot.com/dart-archive/channels/stable/release/1.17.1/dartium/dartium-linux-x64-release.zip && unzip dartium-linux-x64-release.zip && rm dartium-linux-x64-release.zip && mv dartium-lucid64-full-stable-1.17.1.0 dartium
 ```
 
 ## Установка ContentShell
 ```bash
-cd ~
-curl http://gsdview.appspot.com/dart-archive/channels/stable/release/1.17.1/dartium/content_shell-linux-x64-release.zip && unzip content_shell-linux-x64-release.zip && rm content_shell-linux-x64-release.zip && mv drt-lucid64-full-stable-1.17.1.0 content_shell
+cd ~ && wget http://gsdview.appspot.com/dart-archive/channels/stable/release/1.17.1/dartium/content_shell-linux-x64-release.zip && unzip content_shell-linux-x64-release.zip && rm content_shell-linux-x64-release.zip && mv drt-lucid64-full-stable-1.17.1.0 content_shell
 ```
 
 ## Установка Dart SDK
 ```bash
-cd ~
-curl http://gsdview.appspot.com/dart-archive/channels/stable/release/1.17.1/sdk/dartsdk-linux-x64-release.zip && unzip dartsdk-linux-x64-release.zip && rm dartsdk-linux-x64-release.zip
+cd ~ && wget https://storage.googleapis.com/dart-archive/channels/stable/release/1.17.1/sdk/dartsdk-linux-x64-release.zip && unzip dartsdk-linux-x64-release.zip && rm dartsdk-linux-x64-release.zip
 ```
 
 ## Добавление путей в PATH
 Для этого можно воспользоваться **.bashrc**:
 
 ```bash
-cd ~
-echo '
+cd ~ && echo '
 export PATH=${PATH}:"~/dart-sdk/bin"
+export PATH=${PATH}:"~/content_shell"
 export PATH=${PATH}:"~/dartium"' >> .bashrc
 source .bashrc
 ```
