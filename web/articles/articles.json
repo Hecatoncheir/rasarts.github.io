@@ -11,5 +11,6 @@
   "Asynchronous_programming": "Learning",
   "Mixins": "Examples",
   "Zones": "Learning",
-  "Clustering_docker_containers_via_consul_for_microservices_dart": "HowTo"
+  "Clustering_docker_containers_via_consul_for_microservices_dart": "HowTo",
+  "Work_with_object_like_with_a_map": "HowTo"
 }
