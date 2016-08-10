@@ -4,7 +4,7 @@
   "id": "11",
   "category": "Руководство к действию",
   "icon": "tutorial",
-  "next_post": "#",
+  "next_post": "Work_with_object_like_with_a_map",
   "prev_post": "Zones",
   "tags": [
     "Docker",

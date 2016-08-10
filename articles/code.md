@@ -1,5 +1,8 @@
 ## Dart пакеты
 
+> **ExMap** - Теперь с объектами удобно работать как и с Map.<br>
+<a href="https://github.com/Rasarts/ExMap">Репозиторий</a>
+
 > **Stream service** - В этой библиотеке, с большим вниманием к GRASP, для работы с событиями, обьеденяются два паттерна: Mediator и Observer.<br>
 <a href="https://github.com/Rasarts/stream_service">Репозиторий</a>
 
