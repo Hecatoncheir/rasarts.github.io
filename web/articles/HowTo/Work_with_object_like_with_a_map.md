@@ -1,7 +1,7 @@
 Иногда нужно иметь возможность работать со свойствами объекта так же удобно как с ключами Map'a. С самим объектом удобнее работать когда у него есть хорошие api Map'a. Такой объект хорошо сериализуется и десериализуется.
 
 Существует как минимум два способа это сделать:
-  - Расширить класс сущности классом [MapBase](https://api.dartlang.org/stable/1.17.1/dart-collection/MapBase-class.html) и реализовать **keys**, **operator[]**, **operator[]=**, **remove** а так же **clear**.
+  - Расширить класс сущности классом [MapBase](https://api.dartlang.org/stable/1.18.1/dart-collection/MapBase-class.html) и реализовать **keys**, **operator[]**, **operator[]=**, **remove** а так же **clear**.
    
     ```dart
     class Entity extends MapBase {
@@ -27,7 +27,7 @@
     }
     ```
     
-  - Добавить в класс сущности миксин [MapMixin](https://api.dartlang.org/stable/1.17.1/dart-collection/MapMixin-class.html) и реализовать **keys**, **operator[]**, **operator[]=**, **remove**, **clear**.
+  - Добавить в класс сущности миксин [MapMixin](https://api.dartlang.org/stable/1.18.1/dart-collection/MapMixin-class.html) и реализовать **keys**, **operator[]**, **operator[]=**, **remove**, **clear**.
   
 ## Реализация:
 
@@ -150,28 +150,29 @@ class ExtendedMap<K, V> extends Object with MapMixin {
   
   ### Аннотации
   
-  Все это хорошо, но мне нравится больше использовать аннотации. Возможно библиотеку **dart:mirrors** уберут из sdk, но сейчас этим можно пользоваться, да и как отдельный пакет mirrors останутся.
-  
-  Сократить объем работы с помощью аннотаций можно следующим образом:
+  Сократить объем работы с помощью аннотаций для трансформера:
+
 ``` dart 
-import 'package:ex_map/ex_map.dart';
-
-@ExAMap()
-class TestMap extends ExMap {
-
-  @MapKey()
-  get id => this['id'];
-  set id(value) => setProtectedField('id', value);
-
-  @MapKey(protected: true)
-  get integerField => this['integerField'];
-  set integerField(value) => this['integerField'] = value;
-
-  @MapKey()
-  get testField => this['testField'];
-  set testField(value) => this['testField'] = value;
-}
-
+/// original source    =>   be transformed to   =>   ready for use 
+import 'package:ex_map/ex_map.dart';      ///    import 'package:ex_map/ex_map.dart';
+                                          ///
+@ExMap                                    ///    @ExMap
+class ExampleMap extends ExtendedMap {    ///    class ExampleMap extends ExtendedMap {
+  @ExKey()                                ///
+  int id;                                 ///       ExampleMap() {
+                                          ///         protectedKeys.addAll(['integerField']);
+  @ExKey(protected: true, type: int)      ///         types = {'id': int, 'integerField': int, 'testField': String};
+  int integerField;                       ///       }
+                                          ///       
+  @ExKey(type: String)                    ///       get id => this['id'];
+  var testField;                          ///       set id(value) => this['id'] = value;
+}                                         ///
+                                          ///       get integerField => this['integerField'];
+                                          ///       set integerFieldd(value) => this['integerField'] = value;
+                                          ///
+                                          ///       get testField => this['testField'];
+                                          ///       set testField(value) => this['testField'] = value;
+                                          ///    }
 ```
 
 Как это реализованно можно увидеть в репозитории пакета: 
