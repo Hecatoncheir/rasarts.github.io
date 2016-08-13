@@ -3,29 +3,29 @@
 Существует как минимум два способа это сделать:
   - Расширить класс сущности классом [MapBase](https://api.dartlang.org/stable/1.18.1/dart-collection/MapBase-class.html) и реализовать **keys**, **operator[]**, **operator[]=**, **remove** а так же **clear**.
    
-    ```dart
-    class Entity extends MapBase {
-      Map _entityMap = new Map();
-        
-      operator [](Object key) {
-        return _entityMap[key];
-      }
-    
-      operator []=(K key, V value) {
-        _entityMap[key] = value;
-      }
-    
-      get keys => _entityMap.keys;
+  ```dart
+  class Entity extends MapBase {
+    Map _entityMap = new Map();
       
-      remove(key) {
-        _entityMap.remove(key);
-      }
-    
-      clear() {
-        _entityMap.clear();
-      }
+    operator [](Object key) {
+      return _entityMap[key];
     }
-    ```
+
+    operator []=(K key, V value) {
+      _entityMap[key] = value;
+    }
+
+    get keys => _entityMap.keys;
+    
+    remove(key) {
+      _entityMap.remove(key);
+    }
+
+    clear() {
+      _entityMap.clear();
+    }
+  }
+  ```
     
   - Добавить в класс сущности миксин [MapMixin](https://api.dartlang.org/stable/1.18.1/dart-collection/MapMixin-class.html) и реализовать **keys**, **operator[]**, **operator[]=**, **remove**, **clear**.
   
