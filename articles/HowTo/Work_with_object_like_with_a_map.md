@@ -3,29 +3,29 @@
 Существует как минимум два способа это сделать:
   - Расширить класс сущности классом [MapBase](https://api.dartlang.org/stable/1.18.1/dart-collection/MapBase-class.html) и реализовать **keys**, **operator[]**, **operator[]=**, **remove** а так же **clear**.
    
-    ```dart
-    class Entity extends MapBase {
-      Map _entityMap = new Map();
-        
-      operator [](Object key) {
-        return _entityMap[key];
-      }
-    
-      operator []=(K key, V value) {
-        _entityMap[key] = value;
-      }
-    
-      get keys => _entityMap.keys;
+  ```dart
+  class Entity extends MapBase {
+    Map _entityMap = new Map();
       
-      remove(key) {
-        _entityMap.remove(key);
-      }
-    
-      clear() {
-        _entityMap.clear();
-      }
+    operator [](Object key) {
+      return _entityMap[key];
     }
-    ```
+
+    operator []=(K key, V value) {
+      _entityMap[key] = value;
+    }
+
+    get keys => _entityMap.keys;
+    
+    remove(key) {
+      _entityMap.remove(key);
+    }
+
+    clear() {
+      _entityMap.clear();
+    }
+  }
+  ```
     
   - Добавить в класс сущности миксин [MapMixin](https://api.dartlang.org/stable/1.18.1/dart-collection/MapMixin-class.html) и реализовать **keys**, **operator[]**, **operator[]=**, **remove**, **clear**.
   
@@ -148,7 +148,7 @@ class ExtendedMap<K, V> extends Object with MapMixin {
   }
   ```
   
-  ### Аннотации
+  ### Аннотации для трансформера
   
   Сократить объем работы с помощью аннотаций для трансформера:
 
@@ -159,16 +159,18 @@ import 'package:ex_map/ex_map.dart';      ///    import 'package:ex_map/ex_map.d
 @ExMap                                    ///    @ExMap
 class ExampleMap extends ExtendedMap {    ///    class ExampleMap extends ExtendedMap {
   @ExKey()                                ///
-  int id;                                 ///       ExampleMap() {
+  int id;                                 ///       ExampleMap({int id, int integerField, String testField}) {
                                           ///         protectedKeys.addAll(['integerField']);
   @ExKey(protected: true, type: int)      ///         types = {'id': int, 'integerField': int, 'testField': String};
-  int integerField;                       ///       }
-                                          ///       
-  @ExKey(type: String)                    ///       get id => this['id'];
-  var testField;                          ///       set id(value) => this['id'] = value;
-}                                         ///
+  int integerField = 1;                   ///         this.integerField = 1;
+                                          ///         this['testField'] = 'test';
+  @ExKey(type: String)                    ///       }
+  var testField = 'test';                 ///       
+}                                         ///       get id => this['id'];
+                                          ///       set id(value) => this['id'] = value;
+                                          ///
                                           ///       get integerField => this['integerField'];
-                                          ///       set integerFieldd(value) => this['integerField'] = value;
+                                          ///       set integerFieldd(value) => setProtectedField('integerField', value);
                                           ///
                                           ///       get testField => this['testField'];
                                           ///       set testField(value) => this['testField'] = value;
