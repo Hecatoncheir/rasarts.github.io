@@ -148,7 +148,7 @@ class ExtendedMap<K, V> extends Object with MapMixin {
   }
   ```
   
-  ### Аннотации
+  ### Аннотации для трансформера
   
   Сократить объем работы с помощью аннотаций для трансформера:
 
@@ -159,16 +159,18 @@ import 'package:ex_map/ex_map.dart';      ///    import 'package:ex_map/ex_map.d
 @ExMap                                    ///    @ExMap
 class ExampleMap extends ExtendedMap {    ///    class ExampleMap extends ExtendedMap {
   @ExKey()                                ///
-  int id;                                 ///       ExampleMap() {
+  int id;                                 ///       ExampleMap({int id, int integerField, String testField}) {
                                           ///         protectedKeys.addAll(['integerField']);
   @ExKey(protected: true, type: int)      ///         types = {'id': int, 'integerField': int, 'testField': String};
-  int integerField;                       ///       }
-                                          ///       
-  @ExKey(type: String)                    ///       get id => this['id'];
-  var testField;                          ///       set id(value) => this['id'] = value;
-}                                         ///
+  int integerField = 1;                   ///         this.integerField = 1;
+                                          ///         this['testField'] = 'test';
+  @ExKey(type: String)                    ///       }
+  var testField = 'test';                 ///       
+}                                         ///       get id => this['id'];
+                                          ///       set id(value) => this['id'] = value;
+                                          ///
                                           ///       get integerField => this['integerField'];
-                                          ///       set integerFieldd(value) => this['integerField'] = value;
+                                          ///       set integerFieldd(value) => setProtectedField('integerField', value);
                                           ///
                                           ///       get testField => this['testField'];
                                           ///       set testField(value) => this['testField'] = value;
