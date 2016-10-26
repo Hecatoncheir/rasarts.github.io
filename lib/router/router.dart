@@ -90,10 +90,6 @@ prepareAllPages() async {
     String template = '''
          <header class="bp-header cf style-scope stack-pages">
 
-            <a href="/#article/$article">
-                <ink-button class="ink-btn style-scope stack-pages">Открыть</ink-button>
-            </a>
-
             <span class="bp-header__present style-scope stack-pages">${articleDetails['tags']}</span>
             <a class="style-scope stack-pages" href="/#article/${article}">
               <h1 class="bp-header__title style-scope stack-pages">${articleDetails['title']}</h1>

@@ -12,7 +12,6 @@ import 'package:web_components/html_import_annotation.dart' show HtmlImport;
 /// Components
 import 'package:blog/components/tree_dots/tree_dots.dart';
 import 'package:blog/components/ink_transition/ink_transition.dart';
-import 'package:blog/components/ink_button/ink_button.dart';
 
 import 'package:polymer_elements/marked_element.dart';
 import 'package:polymer_elements/iron_media_query.dart';

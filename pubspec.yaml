@@ -3,7 +3,7 @@ version: 0.0.1
 dependencies:
   browser: any
   polymer:
-    version: '1.0.0-rc.17'
+    version: '1.0.0-rc.18'
     git: https://github.com/dart-lang/polymer-dart.git
   polymer_elements: '1.0.0-rc.8'
   js: '^0.6.0'
