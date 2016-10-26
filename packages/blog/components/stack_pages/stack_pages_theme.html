@@ -398,7 +398,7 @@
             /* Blueprint header */
 
             .bp-header {
-                padding: 6em 10vw 2em;
+                padding: 1em 10vw 2em;
             }
 
             .bp-header__title {
@@ -410,13 +410,11 @@
                 text-transform: uppercase;
                 color: #000000;
                 transition: all 0.2s ease;
-                margin-left: 100px;
             }
 
             .bp-header__desc {
                 font-size: 0.95em;
                 margin: 0.5em 0 1em;
-                margin-left: 100px;
                 padding: 0;
                 color: #979797;
             }
@@ -543,16 +541,25 @@
                 content: '\e004';
             }
 
+            .page .bp-header:first-child {
+                 margin-top: 60px;
+            }
+
             .page-content {
                 color: #000;
             }
 
             .page-content a {
-                color: #989898;
+                color: #008ACE;
+                border-bottom: 1px solid;
             }
 
             .page-content a:hover {
-                color: #1d1d1d;
+                color: #CC0000;
+            }
+           
+            .page-content a:visited {
+                color: #B40EB4;
             }
 
             @media screen and (max-width: 40em) {
@@ -582,7 +589,8 @@
             }
 
             .bp-header__title:hover {
-                color: #bec8cc;
+                color: #979797;
+                cursor: pointer;
             }
 
         </style>
