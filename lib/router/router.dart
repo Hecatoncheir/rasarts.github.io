@@ -59,7 +59,7 @@ Element pageHome;
 Element pageExamplesCode;
 Element pageGuidelinesForAction;
 Element pageLearningDart;
-Element pageTagDocker;
+Element pageTagGo;
 Element pageTagHTTP;
 
 prepareAllPages() async {
@@ -67,7 +67,7 @@ prepareAllPages() async {
   pageExamplesCode = querySelector('#page-examples-Dart-code');
   pageGuidelinesForAction = querySelector('#page-guidelines-for-action');
   pageLearningDart = querySelector('#page-learning-Dart');
-  pageTagDocker = querySelector('#page-tag-Docker');
+  pageTagGo = querySelector('#page-tag-Go');
   pageTagHTTP = querySelector('#page-tag-HTTP');
 
   String articlesJSON = await HttpRequest.getString('/articles/articles.json');
@@ -116,8 +116,8 @@ prepareAllPages() async {
           treeSanitizer: new NullTreeSanitizer());
     }
 
-    if (articleDetails['tags'].contains('Docker')) {
-      await pageTagDocker.appendHtml(template,
+    if (articleDetails['tags'].contains('Go')) {
+      await pageTagGo.appendHtml(template,
           treeSanitizer: new NullTreeSanitizer());
     }
 
