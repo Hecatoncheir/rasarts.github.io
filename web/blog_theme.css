@@ -13,7 +13,8 @@ html.js,
 }
 
 body {
-    font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
+    /*font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;*/
+    font-family: 'Anonymous Pro', monospace !important;
     margin: 0;
     color: #cecece;
     /*background: #1d1e21;*/
