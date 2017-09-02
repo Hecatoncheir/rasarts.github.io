@@ -1,0 +1,26 @@
+analyzer:
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+  errors:
+    unused_element: info
+    unused_import: info
+    unused_local_variable: error
+    dead_code: error
+    todo: ignore
+    #  deprecated_member_use: ignore
+  exclude:
+    - lib/api/*.dart
+
+linter:
+  rules:
+linter:
+  rules:
+    - await_only_futures
+    - cancel_subscriptions
+    - hash_and_equals
+    - iterable_contains_unrelated_type
+    - list_remove_unrelated_type
+    - test_types_in_equals
+    - unrelated_type_equality_checks
+    - valid_regexps

@@ -1,0 +1,1 @@
+export 'package:pages/components/application/application.dart';
