@@ -1,6 +1,7 @@
 library application_component;
 
 import 'package:angular/angular.dart';
+import 'package:angular/core.dart';
 import 'package:angular_router/angular_router.dart';
 
 import 'package:pages/components.dart';
@@ -16,7 +17,7 @@ import 'package:pages/components.dart';
       const Provider(LocationStrategy, useClass: HashLocationStrategy)
     ])
 @RouteConfig(const [
-//  const Route(path: '/', name: "Home", component: HomeComponent),
-//  const Route(path: 'about', name: "About", component: AboutMeComponent)
+  const Route(path: '/', name: "Home", component: HomeComponent, useAsDefault: true),
+  const Route(path: 'about', name: "About", component: AboutComponent)
 ])
 class ApplicationComponent {}
