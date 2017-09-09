@@ -2,6 +2,7 @@ library home_component;
 
 import 'package:angular/angular.dart';
 import 'package:pages/services.dart';
+import 'package:pages/src/entities.dart';
 
 @Component(
     selector: 'home',
@@ -13,8 +14,10 @@ class HomeComponent implements OnInit {
   HomeComponent(this.articlesService);
 
   void ngOnInit() {
-    articlesService.getAllAnnouncements().then((a) {
-      print(a);
+    articlesService
+        .getAllAnnouncements()
+        .then((List<Announcement> announcements) {
+      print(announcements[0].text);
     });
   }
 }
