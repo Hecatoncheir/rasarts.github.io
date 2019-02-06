@@ -15,6 +15,10 @@ Backend мне удобнее писать на Go. Считаю что NSQ уд
 
 Разрабатывал несколько сайтов на ROR, пример одного из них: https://github.com/Rasarts/stomixengine.
 
+Для CI/CD использую либо Travis, либо встроенные средства в GitLab. 
+
+- Images в <a href="https://hub.docker.com/u/rasart">docker hub</a>.
+
 <b>Делал сайты на Bitrix. Есть несколько сертификатов</b>:
 
 - «Контент-менеджер»
